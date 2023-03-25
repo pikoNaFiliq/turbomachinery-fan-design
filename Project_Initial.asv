@@ -33,7 +33,7 @@ rhot_0 = rho_0 * ( 1 + ( (k - 1) / 2 ) * M_0^2 ) ^ ( - (k - 1)  ) ; % Total dens
 
 %% Duty Coefficients and angles
 
-% Here we define the two duty coefficients and a1
+% Here we define the two duty coefficients and the 
 
 phi = 0.5;     % Flow Coefficient
 psi = 0.4;       % Work Coefficient
