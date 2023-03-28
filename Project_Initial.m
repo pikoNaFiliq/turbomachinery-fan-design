@@ -35,9 +35,9 @@ rhot_0 = rho_0 * ( 1 + ( (k - 1) / 2 ) * M_0^2 ) ^ ( - (k - 1)  ) ; % Total dens
 
 % Here we define the two duty coefficients and a1
 
-phi = 0.5;     % Flow Coefficient
-psi = 0.4;       % Work Coefficient
-a1 = 0 ;       % Inlet flow angle [degrees]
+phi = 0.5;       % Flow Coefficient
+psi = 0.3;       % Work Coefficient
+a1 = 0 ;         % Inlet flow angle [degrees]
 
 lamda = 2 * psi;
 
