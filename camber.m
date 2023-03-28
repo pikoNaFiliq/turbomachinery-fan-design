@@ -6,7 +6,7 @@ function [theta] = camber(b1,b2,d0,i0,m_coeff,sol,exp_b,n_coeff)
 
 
 %% Flow deviation
-delta_b = b1 - b2 ; % !!!!!!! Flow deviation ( is it like that or b2-b1?)
+delta_b = b1 - b2 ; % !!!!!!! Flow deviation 
 
 %% m_coeff
 coeff_1 = polyfit(m_coeff(:,1) , m_coeff(:,2) , 9);       % Polynomial Coefficients
