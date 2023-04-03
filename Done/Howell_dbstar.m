@@ -1,4 +1,4 @@
-function [result] = Howell_dB(b2)
+function [result] = Howell_dbstar(b2)
 %UNTITLED13 Summary of this function goes here
 
 
