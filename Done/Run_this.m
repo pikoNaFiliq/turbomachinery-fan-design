@@ -24,3 +24,4 @@ d6 = Lieblein_K_it(max_th);
 
 
 i0 = Lieblein_i0(d4,d5,d6,prof)
+db = Howell_delta_b(d3,d1,d2)
