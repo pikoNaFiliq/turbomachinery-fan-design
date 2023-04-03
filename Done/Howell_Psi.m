@@ -14,7 +14,7 @@ y = polyval(coeffs, x);
 
 % Calculate the wanted value
 
-result = polyval(coeffs, 1 / sol)
+result = polyval(coeffs, 1 / sol);
 
 % plot the polynomial function
 figure

@@ -52,7 +52,7 @@ end
 if (solidity <= 2) && (solidity >= 1.9)
 
 
-    result = polyval(coeffs(1,:),b1)
+    result = polyval(coeffs(1,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 
@@ -61,7 +61,7 @@ if (solidity <= 2) && (solidity >= 1.9)
 
 elseif (solidity >= 1.7)
 
-    result = polyval(coeffs(2,:),b1)
+    result = polyval(coeffs(2,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 
@@ -69,28 +69,28 @@ elseif (solidity >= 1.7)
 
 elseif (solidity >= 1.5)
 
-    result = polyval(coeffs(3,:),b1)
+    result = polyval(coeffs(3,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 
 
 elseif (solidity >= 1.3)
 
-    result = polyval(coeffs(4,:),b1)
+    result = polyval(coeffs(4,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 
 
 elseif (solidity >= 1.1)
 
-    result = polyval(coeffs(5,:),b1)
+    result = polyval(coeffs(5,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 
 
 elseif (solidity >= 0.9)
 
-    result = polyval(coeffs(6,:),b1)
+    result = polyval(coeffs(6,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 
@@ -99,7 +99,7 @@ elseif (solidity >= 0.9)
 
 elseif (solidity >= 0.7)
 
-    result = polyval(coeffs(7,:),b1)
+    result = polyval(coeffs(7,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 
@@ -107,7 +107,7 @@ elseif (solidity >= 0.7)
 
 elseif (solidity >= 0.5)
 
-    result = polyval(coeffs(8,:),b1)
+    result = polyval(coeffs(8,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 
@@ -115,7 +115,7 @@ elseif (solidity >= 0.5)
 
 else
 
-    result = polyval(coeffs(9,:),b1)
+    result = polyval(coeffs(9,:),b1);
     plot(b1,result,"ro")
     legend("\sigma = 2","\sigma = 1.8","\sigma = 1.6","\sigma = 1.4","\sigma = 1.2","\sigma = 1","\sigma = 0.8","\sigma = 0.6","\sigma = 0.4","Our Point",'Location','best')
 

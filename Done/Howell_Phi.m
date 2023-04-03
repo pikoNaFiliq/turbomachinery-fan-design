@@ -12,7 +12,7 @@ x = 10^5:1:5*10^5;
 y = polyval(coeffs, x);
 
 % Calculate the wanted value
-result = polyval(coeffs,Re)
+result = polyval(coeffs,Re);
 
 
 % plot the polynomial function

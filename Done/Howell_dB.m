@@ -12,7 +12,7 @@ x = 0:0.1:50;
 y = polyval(coeffs, x);
 
 % Calculate the wanted value
-result  = polyval(coeffs,b2)
+result  = polyval(coeffs,b2);
 
 
 % plot the polynomial function
