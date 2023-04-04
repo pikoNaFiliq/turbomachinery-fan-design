@@ -34,7 +34,7 @@ figure
 plot(x, y);
 hold on
 xlabel("\beta_1 (^o)")
-ylabel("(delta_0)_{10} (^o)")
+ylabel("(\delta_0)_{10} (^o)")
 xlim([0,70])
 ylim([0,5])
 
