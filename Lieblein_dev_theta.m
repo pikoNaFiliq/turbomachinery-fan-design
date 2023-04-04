@@ -1,4 +1,4 @@
-function [] = Lieblein_dev_theta(sol,b1)
+function [result] = Lieblein_dev_theta(sol,b1)
 %% Using the data provided by the graphs
 data = dlmread('Lieblein_4.dat', ',');
 % 1st line  -> solidity = 2.0
