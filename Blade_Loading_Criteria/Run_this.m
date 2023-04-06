@@ -5,23 +5,34 @@ close all
 clear all
 clc
 
+
+phi = 0.5;
+psi = 0.3;
 sol = 1.65;
-b1 = 54;
-b2 = 35;
-Re = 4*10^5;
-max_th = 0.05;
-prof = 1; % 1 -> DCA profile , 0 -> NACA-65 profile
+max_th = 0.1;
+a1 = 0 ;         % Inlet flow angle [degrees]
+
+Re = 3 * 10^5;  %%%%%!!!!!!!!!!!!!!!!!!!
+
+prof = 0;  %%%%!!!!!!!!!!!!!!
+
+lamda = 2 * psi;
+
+b1 = atand( tand(a1) - 1 / phi);
+
+R = - psi / 2  - phi * tand(a1) + 1 ;
+
+b2 = atand( 1 / phi *( psi + phi * tand(a1) - 1));
+
+a2 = atand( tand(b2) + 1 / phi);
+
+flow_defl = abs(b1 -b2); % Flow deflection calculated from the velocity triangles
 
 
-d1 = Howell_Phi(Re);
-d2 = Howell_Psi(sol);
-d3 = Howell_dbstar(b2);
 
-d4 = Lieblein_i0_10(sol,b1);
-d5 = Lieblein_n_coeff(sol,b1);
-d6 = Lieblein_K_it(max_th);
+%% Howell's Loading Criterion
 
-
-
-i0 = Lieblein_i0(d4,d5,d6,prof);
-db = Howell_delta_b(d3,d1,d2);
+db_star = Howell_dbstar(abs(b2));  % Here we use the absolute value of b2
+phi_coeff = Howell_Phi(Re);
+psi_coeff = Howell_Psi(sol);
+db_H = Howell_delta_b(db_star,phi_coeff,psi_coeff);

@@ -6,7 +6,7 @@ function [result] = Howell_dbstar(b2)
 coeffs = dlmread('H_3.txt', ',');
 
 % define the range of x values
-x = 0:0.1:50;
+x = 0:0.1:55;
 
 % evaluate the polynomial for the given range of x values
 y = polyval(coeffs, x);
@@ -22,7 +22,7 @@ hold on
 plot(b2,result,"ro")
 xlabel("\beta_2 (^o)")
 ylabel("\Delta\beta^*/(\Phi\Psi) (^o)")
-xlim([0,50])
+xlim([0,55])
 ylim([10,40])
 
 
