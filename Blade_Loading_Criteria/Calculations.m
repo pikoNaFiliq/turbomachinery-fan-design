@@ -60,6 +60,9 @@ theta = camber(b1,b2,delta_0,i_0,m_coeff,sol,exp_b,n_coeff);
 in_angle = inc(i_0,n_coeff,theta);
 
 
+dev_angle = Lieblein_deviation(delta_0,m_coeff,sol,exp_b,theta);
+
+
 
 
 
