@@ -10,6 +10,10 @@ phi = 0.5;
 psi = 0.3;
 sol = 1.65;
 max_th = 0.1;
+
+
+
+
 a1 = 0 ;         % Inlet flow angle [degrees]
 
 Re = 3 * 10^5;  %%%%%!!!!!!!!!!!!!!!!!!!
