@@ -1,4 +1,4 @@
-function [result] = incidence(i0,n_coeff,theta)
+function [result] = inc(i0,n_coeff,theta)
 %INCIDENCE The incidence angle is calculated here using the data provided 
 %          by the figures from the lecture notes 
 

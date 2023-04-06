@@ -52,12 +52,14 @@ m_coeff = Lieblein_M_coeff(b1,prof);
 exp_b = Lieblein_expo_b(b1);
 n_coeff = Lieblein_n_coeff(sol,b1);
 
-thita = camber(b1,b2,delta_0,i_0,m_coeff,sol,exp_b,n_coeff);
+theta = camber(b1,b2,delta_0,i_0,m_coeff,sol,exp_b,n_coeff);
 
 
 %% Incidence and Deviation angles
 
-inc = i
+in_angle = inc(i_0,n_coeff,theta);
+
+
 
 
 
