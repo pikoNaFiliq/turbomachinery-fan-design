@@ -6,9 +6,9 @@ function [result] = Lieblein_n_coeff(sol,b1)
 data = dlmread('Lieblein_2.dat', ',');
 % 1st line  -> solidity = 0.4
 % Last line -> solidity = 2
-
-coeffsd = zeros(length(data),width(data));
-for i=1:length(data)
+[rows,columns] = size(data);
+coeffsd = zeros(rows,columns);
+for i=1:rows
 
     coeffsd(i,:) = data(i,:); % Getting the coefficients of each individual graph
 
@@ -16,9 +16,9 @@ for i=1:length(data)
 end
 
 %%% Reversing the lines so the 1st line is for solidity = 2
-for i=1:length(data)
+for i=1:rows
 
-    coeffs(i,:) = coeffsd(length(data)+1-i,:);
+    coeffs(i,:) = coeffsd(rows+1-i,:);
 
 end
 
@@ -31,7 +31,7 @@ x = 0:0.1:70;
 
 
 % evaluate the polynomial for the given range of x values
-for i=1:length(data)
+for i=1:rows
     y(i,:) = polyval(coeffs(i,:), x);
 end
 
