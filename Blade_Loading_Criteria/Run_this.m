@@ -43,5 +43,5 @@ db_H = Howell_delta_b(db_star,phi_coeff,psi_coeff);
 %%% Calculations for delta_0
 Kd_sh     = Lieblein_Kd_sh(prof);
 Kd_t      = Lieblein_K_delta(max_th);
-d0_10     = Lieblein_delta0_10(sol,b1);
-delta_0   = Lieblein_delta_0(Kd_sh,Kd_t,d0_10)   
+d0_10     = Lieblein_delta0_10(sol,abs(b1));  % Here we use the absolute value of b1
+delta_0   = Lieblein_delta_0(Kd_sh,Kd_t,d0_10);  
