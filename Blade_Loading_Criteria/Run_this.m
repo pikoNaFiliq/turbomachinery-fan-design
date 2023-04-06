@@ -45,3 +45,10 @@ Kd_sh     = Lieblein_Kd_sh(prof);
 Kd_t      = Lieblein_K_delta(max_th);
 d0_10     = Lieblein_delta0_10(sol,abs(b1));  % Here we use the absolute value of b1
 delta_0   = Lieblein_delta_0(Kd_sh,Kd_t,d0_10);  
+
+
+%%% Calculations for i_0
+
+i0_10 = Lieblein_i0_10(sol,abs(b1));    % Here we use the absolute value of b1
+Ki_t  =  Lieblein_K_it(max_th);
+i_0   = Lieblein_i0(i0_10,Ki_t,prof);
