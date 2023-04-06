@@ -5,9 +5,9 @@ function [result] = Lieblein_i0_10(sol,b1)
 data = dlmread('Lieblein_1.dat', ',');
 % 1st line  -> solidity = 2.0
 % Last line -> solidity = 0.4
-
-coeffs = zeros(length(data),width(data));
-for i=1:length(data)
+[rows,columns] = size(data);
+coeffs = zeros(rows,columns);
+for i=1:rows
 
     coeffs(i,:) = data(i,:); % Getting the coefficients of each individual graph
 
@@ -22,7 +22,7 @@ x = 0:0.1:70;
 
 
 % evaluate the polynomial for the given range of x values
-for i=1:length(data)
+for i=1:rows
     y(i,:) = polyval(coeffs(i,:), x);
 end
 
