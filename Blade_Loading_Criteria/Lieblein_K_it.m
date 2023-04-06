@@ -15,15 +15,15 @@ y = polyval(coeffs, x);
 result  = polyval(coeffs,max_th);
 
 
-% plot the polynomial function
-figure
-plot(x, y);
-hold on
-plot(max_th,result,"ro")
-xlabel("max thickness (t/c)")
-ylabel("Coefficient K_{i,t}")
-xlim([0,0.1])
-ylim([0,1.2])
+% % plot the polynomial function
+% figure
+% plot(x, y);
+% hold on
+% plot(max_th,result,"ro")
+% xlabel("max thickness (t/c)")
+% ylabel("Coefficient K_{i,t}")
+% xlim([0,0.1])
+% ylim([0,1.2])
 
 
 end
