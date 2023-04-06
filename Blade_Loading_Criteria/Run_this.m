@@ -32,6 +32,11 @@ a2 = atand( tand(b2) + 1 / phi);
 
 flow_defl = b1 - b2; % Flow deflection calculated from the velocity triangles
 
+%% Solidity using DF criteria 
+
+DF = 0.45 ;  % typical value for the Diffusion Factor
+solidity_DF = 0.5 * (cosd(a2) * (tand(a2) - tand(a3))) / (DF - 1 + cosd(a2) / cosd(a3));
+
 
 
 %% Howell's Loading Criterion
