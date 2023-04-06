@@ -15,13 +15,13 @@ y = polyval(coeffs, x);
 result = polyval(coeffs,Re);
 
 
-% plot the polynomial function
-figure
-plot(x, y);
-hold on
-plot(Re,result,"ro")
-xlabel("Re ")
-ylabel("Coefficient \Phi")
+% % plot the polynomial function
+% figure
+% plot(x, y);
+% hold on
+% plot(Re,result,"ro")
+% xlabel("Re ")
+% ylabel("Coefficient \Phi")
 
 
 
