@@ -52,3 +52,13 @@ delta_0   = Lieblein_delta_0(Kd_sh,Kd_t,d0_10);
 i0_10 = Lieblein_i0_10(sol,abs(b1));    % Here we use the absolute value of b1
 Ki_t  =  Lieblein_K_it(max_th);
 i_0   = Lieblein_i0(i0_10,Ki_t,prof);
+
+
+
+%%% Calculations for the rest of the parameters that theta needs
+
+m_coeff = Lieblein_M_coeff(abs(b1),prof);
+exp_b = Lieblein_expo_b(abs(b1));
+n_coeff = Lieblein_n_coeff(sol,abs(b1));
+
+theta = camber(b1,b2,delta_0,i_0,m_coeff,sol,exp_b,n_coeff);

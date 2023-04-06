@@ -28,23 +28,23 @@ for i=1:row
 end
 
 
-% plot the polynomial function
-figure
-plot(x, y);
-hold on
-xlabel("\beta_1 (^o)")
-ylabel(" m coefficient (^o)")
-xlim([0,70])
-ylim([0,0.4])
+% % plot the polynomial function
+% figure
+% plot(x, y);
+% hold on
+% xlabel("\beta_1 (^o)")
+% ylabel(" m coefficient (^o)")
+% xlim([0,70])
+% ylim([0,0.4])
 %% Checking which line we should use to calculate our output
 if profile == 0 
     result = polyval(coeffs(1,:),b1);
-    plot(b1,result,"ro")
-    legend("DCA profile", "NACA-65 profile")
+    %plot(b1,result,"ro")
+    %legend("DCA profile", "NACA-65 profile")
 elseif profile == 1 
     result = polyval(coeffs(2,:),b1);
-    plot(b1,result,"ro")
-    legend("DCA profile", "NACA-65 profile")
+   % plot(b1,result,"ro")
+   % legend("DCA profile", "NACA-65 profile")
 else 
     print("Choose a type value, 0 = DCA, 1 = NACA65")
 end
