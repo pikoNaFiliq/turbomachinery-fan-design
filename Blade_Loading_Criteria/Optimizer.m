@@ -12,7 +12,7 @@ x0 = [0.5,0.4,1,0.06];  % [phi,psi,solidity,maximum_thickness]
 
 lb = [0.4,0.15,0.4,0.02];
 
-ub = [0.7,0.6 ,2 , 0.12];
+ub = [0.7,0.7 ,2 , 0.12];
 
 
 % Setting optimization options.
