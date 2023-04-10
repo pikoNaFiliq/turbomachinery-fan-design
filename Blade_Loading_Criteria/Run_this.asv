@@ -76,10 +76,8 @@ theta = camber(b1,b2,delta_0,i_0,m_coeff,sol,exp_b,n_coeff);
 %% Incidence and Deviation angles
 
 in_angle = Lieblein_inc(i_0,n_coeff,theta);
-X = ["The incidence angle is equal to : ", num2str(in_angle)];
-disp(X)
+X = [""]
+disp("The incidence angle is equal to : ", num2str(in_angle))
 
 
 dev_angle = Lieblein_deviation(delta_0,m_coeff,sol,exp_b,theta);
-X = ["The deviation angle is equal to : ", num2str(dev_angle)];
-disp(X)
