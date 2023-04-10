@@ -6,7 +6,7 @@ clc
 
 %% Initial design vector
 
-x0 = [1,1,1,1];  % [phi,psi,solidity,maximum_thickness]
+x0 = [0.5,0.4,1,0.06];  % [phi,psi,solidity,maximum_thickness]
 
 %% Bounds of the optimization
 
