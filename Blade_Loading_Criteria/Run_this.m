@@ -32,10 +32,10 @@ a2 = atand( tand(b2) + 1 / phi);
 
 flow_defl = b1 - b2; % Flow deflection calculated from the velocity triangles
 
-%% Solidity using DF criteria 
-
-DF = 0.45 ;  % typical value for the Diffusion Factor
-solidity_DF = 0.5 * (cosd(a2) * (tand(a2) - tand(a3))) / (DF - 1 + cosd(a2) / cosd(a3));
+% %% Solidity using DF criteria 
+% 
+% DF = 0.45 ;  % typical value for the Diffusion Factor
+% solidity_DF = 0.5 * (cosd(a2) * (tand(a2) - tand(a3))) / (DF - 1 + cosd(a2) / cosd(a3));
 
 
 
@@ -76,6 +76,8 @@ theta = camber(b1,b2,delta_0,i_0,m_coeff,sol,exp_b,n_coeff);
 %% Incidence and Deviation angles
 
 in_angle = Lieblein_inc(i_0,n_coeff,theta);
+
+disp("The incidence angle is equal to : ")
 
 
 dev_angle = Lieblein_deviation(delta_0,m_coeff,sol,exp_b,theta);
