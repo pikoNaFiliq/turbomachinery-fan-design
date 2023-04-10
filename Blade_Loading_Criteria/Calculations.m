@@ -75,7 +75,7 @@ dev_angle = Lieblein_deviation(delta_0,m_coeff,sol,exp_b,theta);
 % The deviation calculated by the Howell's Loading Criterion should be
 % equal to the deviation that is calculated by the velovity triangles
 
-obj = abs( abs(db_H) - abs(flow_defl))
+obj = abs( abs(db_H) - abs(flow_defl));
 
 
 
