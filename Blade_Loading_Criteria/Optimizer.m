@@ -34,9 +34,16 @@ options.PlotFcns = {@optimplotfval,@optimplotx,@optimplotfunccount,...
                     @optimplotconstrviolation};    % Plotting the optimization parameters.
 
 
+% % Running the optimization.  
+% tic
+% [x_opt,FVAL,exitflag,output] = fmincon(@Coordinator,x0,[],[],[],[],lb,ub,@Constraints,options);
+% history.x = [history.x;x];
+% toc
+
+
 % Running the optimization.  
 tic
-[x_opt,FVAL,exitflag,output] = fmincon(@Coordinator,x0,[],[],[],[],lb,ub,@Constraints,options);
+[x_opt,FVAL,exitflag,output] = fmincon(@Calculations,x0,[],[],[],[],lb,ub,[],options);
 history.x = [history.x;x];
 toc
 
