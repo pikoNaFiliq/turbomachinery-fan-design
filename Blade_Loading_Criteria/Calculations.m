@@ -114,12 +114,14 @@ dev_angle_st = Lieblein_deviation(delta_0_st,m_coeff_st,sol_st,exp_b_st,theta_st
 
 
 
-%% Calculation of the objective function
+% %% Calculation of the objective function
+% 
+% % The deviation calculated by the Howell's Loading Criterion should be
+% % equal to the deviation that is calculated by the velovity triangles
+% 
+% obj = abs( abs(db_H_rt) - abs(flow_defl_rt));
 
-% The deviation calculated by the Howell's Loading Criterion should be
-% equal to the deviation that is calculated by the velovity triangles
-
-obj = abs( abs(db_H_rt) - abs(flow_defl_rt));
+%% Calculation for the profile losses for ROTOR
 
 
 
