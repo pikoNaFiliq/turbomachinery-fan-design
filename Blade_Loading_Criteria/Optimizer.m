@@ -6,13 +6,13 @@ clc
 
 %% Initial design vector
 
-x0 = [0.5,0.4,1,0.06];  % [phi,psi,solidity,maximum_thickness]
+x0 = [0.5,0.4,1,0.06,1,0.06];  % [phi,psi,solidity_rotor,maximum_thickness_rotor,solidity_stator,maximum_thickness_stator]
 
 %% Bounds of the optimization
 
-lb = [0.4,0.15,0.4,0.02];
+lb = [0.4,0.15,0.4,0.02,0.4,0.02];
 
-ub = [0.7,0.7 ,2 , 0.12];
+ub = [0.7,0.7 ,2 , 0.12,2 , 0.12];
 
 
 % Setting optimization options.

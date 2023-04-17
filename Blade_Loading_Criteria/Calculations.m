@@ -137,7 +137,12 @@ dpsi_loss_st = (Y_st * phi^2) / ( 2 * (cosd(a2))^2 );  % Loss of psi for the sta
 
 
 
+%% Objective Function
 
+% Now the objective function is calculated
+% We want to minimize the profile losses in both stator and rotor
+
+obj = dpsi_loss_st + dpsi_loss_rt ; % Adding both losses 
 
 
 
