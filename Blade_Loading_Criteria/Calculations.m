@@ -2,7 +2,7 @@ function [obj] = Calculations(x)
 
 
 %% Set the design variables
-[phi,psi,sol_rt,max_th_rt] =  deal(x(1),x(2),x(3),x(4));
+[phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x(1),x(2),x(3),x(4),x(5),x(6));
 
 %% Calculate the velocity triangles
 
