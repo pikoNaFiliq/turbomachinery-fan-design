@@ -71,13 +71,46 @@ theta_rt = camber(b1,b2,delta_0_rt,i_0_rt,m_coeff_rt,sol_rt,exp_b_rt,n_coeff_rt)
 
 %% Camber angle theta for STATOR
 
+%%% Calculations for delta_0_st 
+Kd_sh_st     = Lieblein_Kd_sh(prof);
+Kd_t_st      = Lieblein_K_delta(max_th_st);
+d0_10_st     = Lieblein_delta0_10(sol_st,abs(a2));  % Here we use the absolute value of a2
+delta_0_st   = Lieblein_delta_0(Kd_sh_st,Kd_t_st,d0_10_st);  
 
-%% Incidence and Deviation angles
 
-in_angle = Lieblein_inc(i_0_rt,n_coeff_rt,theta_rt);
+%%% Calculations for i_0_st
+
+i0_10_st = Lieblein_i0_10(sol_st,abs(a2));    % Here we use the absolute value of a2
+Ki_t_st  =  Lieblein_K_it(max_th_st);
+i_0_st   = Lieblein_i0(i0_10_st,Ki_t_st,prof);
 
 
-dev_angle = Lieblein_deviation(delta_0_rt,m_coeff_rt,sol_rt,exp_b_rt,theta_rt);
+
+%%% Calculations for the rest of the parameters that theta_st needs
+
+m_coeff_st = Lieblein_M_coeff(abs(a2),prof);
+exp_b_st = Lieblein_expo_b(abs(a2));
+n_coeff_st = Lieblein_n_coeff(sol_st,abs(a2));
+
+theta_st = camber(a2,a3,delta_0_st,i_0_st,m_coeff_st,sol_st,exp_b_st,n_coeff_st);
+
+
+
+
+%% Incidence and Deviation angles for ROTOR
+
+in_angle_rt = Lieblein_inc(i_0_rt,n_coeff_rt,theta_rt);
+
+
+dev_angle_rt = Lieblein_deviation(delta_0_rt,m_coeff_rt,sol_rt,exp_b_rt,theta_rt);
+
+
+%% Incidence and Deviation angles for STATOR
+
+in_angle_st = Lieblein_inc(i_0_st,n_coeff_st,theta_st);
+
+
+dev_angle_st = Lieblein_deviation(delta_0_st,m_coeff_st,sol_st,exp_b_st,theta_st);
 
 
 

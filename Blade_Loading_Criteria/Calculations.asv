@@ -44,38 +44,73 @@ psi_coeff_st = Howell_Psi(sol_st);
 db_H_st = Howell_delta_b(db_star_st,phi_coeff_st,psi_coeff_st);
 
 
-%% Camber angle thita for ROTOR
+%% Camber angle theta for ROTOR
 
-%%% Calculations for delta_0 
+%%% Calculations for delta_0_rt 
 Kd_sh_rt     = Lieblein_Kd_sh(prof);
 Kd_t_rt      = Lieblein_K_delta(max_th_rt);
 d0_10_rt     = Lieblein_delta0_10(sol_rt,abs(b1));  % Here we use the absolute value of b1
-delta_0   = Lieblein_delta_0(Kd_sh_rt,Kd_t_rt,d0_10_rt);  
+delta_0_rt   = Lieblein_delta_0(Kd_sh_rt,Kd_t_rt,d0_10_rt);  
 
 
-%%% Calculations for i_0
+%%% Calculations for i_0_rt
 
-i0_10 = Lieblein_i0_10(sol_rt,abs(b1));    % Here we use the absolute value of b1
-Ki_t  =  Lieblein_K_it(max_th_rt);
-i_0   = Lieblein_i0(i0_10,Ki_t,prof);
-
-
-
-%%% Calculations for the rest of the parameters that theta needs
-
-m_coeff = Lieblein_M_coeff(abs(b1),prof);
-exp_b = Lieblein_expo_b(abs(b1));
-n_coeff = Lieblein_n_coeff(sol_rt,abs(b1));
-
-theta = camber(b1,b2,delta_0,i_0,m_coeff,sol_rt,exp_b,n_coeff);
+i0_10_rt = Lieblein_i0_10(sol_rt,abs(b1));    % Here we use the absolute value of b1
+Ki_t_rt  =  Lieblein_K_it(max_th_rt);
+i_0_rt   = Lieblein_i0(i0_10_rt,Ki_t_rt,prof);
 
 
-%% Incidence and Deviation angles
 
-in_angle = Lieblein_inc(i_0,n_coeff,theta);
+%%% Calculations for the rest of the parameters that theta_rt needs
+
+m_coeff_rt = Lieblein_M_coeff(abs(b1),prof);
+exp_b_rt = Lieblein_expo_b(abs(b1));
+n_coeff_rt = Lieblein_n_coeff(sol_rt,abs(b1));
+
+theta_rt = camber(b1,b2,delta_0_rt,i_0_rt,m_coeff_rt,sol_rt,exp_b_rt,n_coeff_rt);
+
+%% Camber angle theta for STATOR
+
+%%% Calculations for delta_0_st 
+Kd_sh_st     = Lieblein_Kd_sh(prof);
+Kd_t_st      = Lieblein_K_delta(max_th_st);
+d0_10_st     = Lieblein_delta0_10(sol_st,abs(a2));  % Here we use the absolute value of a2
+delta_0_st   = Lieblein_delta_0(Kd_sh_st,Kd_t_st,d0_10_st);  
 
 
-dev_angle = Lieblein_deviation(delta_0,m_coeff,sol_rt,exp_b,theta);
+%%% Calculations for i_0_st
+
+i0_10_st = Lieblein_i0_10(sol_st,abs(a2));    % Here we use the absolute value of a2
+Ki_t_st  =  Lieblein_K_it(max_th_st);
+i_0_st   = Lieblein_i0(i0_10_st,Ki_t_st,prof);
+
+
+
+%%% Calculations for the rest of the parameters that theta_st needs
+
+m_coeff_st = Lieblein_M_coeff(abs(a2),prof);
+exp_b_st = Lieblein_expo_b(abs(a2));
+n_coeff_st = Lieblein_n_coeff(sol_st,abs(a2));
+
+theta_st = camber(a2,a3,delta_0_st,i_0_st,m_coeff_st,sol_st,exp_b_st,n_coeff_st);
+
+
+
+
+%% Incidence and Deviation angles for ROTOR
+
+in_angle_rt = Lieblein_inc(i_0_rt,n_coeff_rt,theta_rt);
+
+
+dev_angle_rt = Lieblein_deviation(delta_0_rt,m_coeff_rt,sol_rt,exp_b_rt,theta_rt);
+
+
+%% Incidence and Deviation angles for STATOR
+
+in_angle_st = Lieblein_inc(i_0_st,n_coeff_st,theta_st);
+
+
+dev_angle_st = Lieblein_deviation(delta_0_st,m_coeff_st,sol_st,exp_b_st,theta_st);
 
 
 
