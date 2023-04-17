@@ -114,15 +114,42 @@ dev_angle_st = Lieblein_deviation(delta_0_st,m_coeff_st,sol_st,exp_b_st,theta_st
 
 
 
+%% Calculation for the profile losses for ROTOR
+
+DF_rt = 0.45 ; % Typical value for the Diffusion Factor
+
+th_c_rt = 0.0804 * DF_rt^2 - 0.0272 * DF_rt + 0.0071; % theta over c value for rotor
+
+Y_rt = th_c_rt * ( sol_rt / cosd(b2) ) * ( cosd(b1) / cosd(b2) )^2 ; % Y value for rotor
+
+dpsi_loss_rt = (Y_rt * phi^2) / ( 2 * (cosd(b1))^2 );  % Loss of psi for the rotor
+
+%% Calculation for the profile losses for STATOR
+
+DF_st = 0.45 ; % Typical value for the Diffusion Factor
+
+th_c_st = 0.0804 * DF_st^2 - 0.0272 * DF_st + 0.0071; % theta over c value for stator
+
+Y_st = th_c_st * ( sol_st / cosd(a3) ) * ( cosd(a2) / cosd(a3) )^2 ; % Y value for stator
+
+dpsi_loss_st = (Y_st * phi^2) / ( 2 * (cosd(a2))^2 );  % Loss of psi for the stator
+
+
+
+
+
+
+
+
+
+
+
 % %% Calculation of the objective function
 % 
 % % The deviation calculated by the Howell's Loading Criterion should be
 % % equal to the deviation that is calculated by the velovity triangles
 % 
 % obj = abs( abs(db_H_rt) - abs(flow_defl_rt));
-
-%% Calculation for the profile losses for ROTOR
-
 
 
 
