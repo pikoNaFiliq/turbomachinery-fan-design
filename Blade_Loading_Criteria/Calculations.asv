@@ -38,10 +38,10 @@ psi_coeff_rt = Howell_Psi(sol_rt);
 db_H_rt = Howell_delta_b(db_star_rt,phi_coeff_rt,psi_coeff_rt);
 
 %% Howell's Loading Criterion for STATOR
-da_star_st = Howell_dbstar(abs(a3));  % Here we use the absolute value of b2
-phi_coeff_st = Howell_Phi(Re);
-psi_coeff_st = Howell_Psi(sol_st);
-db_H_st = Howell_delta_b(db_star_st,phi_coeff_st,psi_coeff_st);
+da_star_st = Howell_dbstar(abs(b2));  % Here we use the absolute value of b2
+phi_coeff_rt = Howell_Phi(Re);
+psi_coeff_rt = Howell_Psi(sol_rt);
+db_H_rt = Howell_delta_b(db_star_rt,phi_coeff_rt,psi_coeff_rt);
 
 
 %% Camber angle thita
