@@ -14,9 +14,9 @@ global couplings
 couplings.x0 = initial;
 %% Bounds of the optimization
 
-lb = [0.4,0.15,0.4,0.02,0.4,0.02]./abs(intial);
+lb = [0.4,0.15,0.4,0.02,0.4,0.02]./abs(initial);
 
-ub = [0.7,0.7 ,2 , 0.12,2 , 0.12]./abs(intial);
+ub = [0.7,0.7 ,2 , 0.12,2 , 0.12]./abs(initial);
 
 
 % Setting optimization options.
@@ -47,7 +47,7 @@ options.PlotFcns = {@optimplotfval,@optimplotx,@optimplotfunccount,...
 
 % Running the optimization.  
 tic
-[x_opt,FVAL,exitflag,output] = fmincon(@Calculations,x0,[],[],[],[],lb,ub,[],options);
+[x_opt,FVAL,exitflag,output] = fmincon(@Calculations,x0,[],[],[],[],lb,ub,@Constraints,options);
 history.x = [history.x;x];
 toc
 
