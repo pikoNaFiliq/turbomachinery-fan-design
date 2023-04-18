@@ -23,25 +23,25 @@ a3 = a1 ; % assuming REPEATED STAGES
 flow_defl_beta = b1 - b2;
 flow_defl_alpha = a2 - a1;
 
-%% Howell's Loading Criterion for Rotor
+%% Howell's Loading Criterion for Stator
 
 db_star = Howell_dbstar(abs(b2));  % Here we use the absolute value of b2
-phi_coeff_rt = Howell_Phi(Re);
-psi_coeff_rt = Howell_Psi(sol_rt);
-db_H_rt = Howell_delta_b(db_star,phi_coeff_rt,psi_coeff_rt);
+phi_coeff = Howell_Phi(Re);
+psi_coeff = Howell_Psi(sol_st);
+db_H = Howell_delta_b(db_star,phi_coeff,psi_coeff);
 
 
-%% Howell's Loading Criterion for Stator
+%% Howell's Loading Criterion for STATOR
 db_star_st = Howell_dbstar(abs(a3));  % Here we use the absolute value of b2
 phi_coeff_st = Howell_Phi(Re);
 psi_coeff_st = Howell_Psi(sol_st);
 db_H_st = Howell_delta_b(db_star_st,phi_coeff_st,psi_coeff_st);
 
 %% Inequality Constraints
-c1 = (flow_defl_beta/db_H_rt) - 1;
-c2 = (flow_defl_alpha/db_H_st) - 1;
+c1 = (flow_defl_beta/db_H) - 1;
 
-c = [c1,c2];
+
+c = [c1];
 ceq = [];
 end
 
