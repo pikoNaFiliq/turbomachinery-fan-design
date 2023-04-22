@@ -33,9 +33,67 @@ rhot_1 = rho_1 * ( 1 + ( (k - 1) / 2 ) * M_1^2 ) ^ ( - (k - 1)  ) ; % Total dens
 
 %% Calculations fpor the outlet of the rotor ( station 2)
 
-Tt_2 = Tt_1 * b_tt^((k-1) / k);   % Total temperature at the outlet of the rotor
+Tt_2 = Tt_1 * b_tt^((k-1) / k);   % Total temperature at the outlet of the rotor [K]
+pt_2 = pt_1 * b_tt;               % Total pressure at the outlet of the rotor [Pa]
 
 w = Cp * ( Tt_2 - Tt_1);    % Specific work done by the fan [J/kg]
+
+U = sqrt(w / psi);   % Peripheral speed at the mean radius
+
+r_mean = U / n ;   % Mean radius ( also design radius)
+
+V_ax = phi * U_mean;  % Meridional (Axial) Velocity (constant throughout) [m/s]
+
+%%%% Velocity triangles
+
+V_1 = Vm / cosd(a1) ;   % Absolute Velocity at the inlet of the rotor [m/s]
+
+V_2 = Vm / cosd(a2) ;   % Absolute Velocity at the outlet of the rotor [m/s]
+
+V_3 = Vm / cosd(a3) ;   % Absolute Velocity at the outlet of the stator [m/s]
+
+W_1 = Vm / cosd(b1) ;   % Relative Velocity at the inlet of the rotor [m/s]
+
+W_2 = Vm / cosd(b2) ;   % Relative Velocity at the outlet of the rotor [m/s]
+
+T_1 = Tt_1 - (0.5/Cp) * V_1^2;   % Static temperature at the inlet of the rotor [K]
+T_2 = Tt_2 - (0.5/Cp) * V_2^2;   % Static temperature at the outlet of the rotor  [K]
+
+p_1 = pt_1 / (Tt_1 / T_1)^( k / ((k - 1) * n_p)); % Static pressire at the inlet of the rotor  [Pa]
+p_2 = pt_2 / (Tt_2 / T_2)^( k / ((k - 1) * n_p)); % Static pressire at the outlet of the rotor [Pa]
+
+rho_1 = p_1/(R_gas * T_1);           % Static pressure at the inlet of the rotor ,assuming IDEAL GAS [kg/m^3]
+rho_2 = p_2/(R_gas * T_2);           % Static pressure at the outlet of the rotor,assuming IDEAL GAS [kg/m^3]
+
+A_1 = m / (rho_1 * Vm);         % Area at the inlet of the rotor  [m^2]
+A_2 = m / (rho_2 * Vm);         % Area at the outlet of the rotor [m^2]
+
+H_1 = A_1 / (2 * pi() * r_mean);   % Blade Height of rotor  at the inlet[m]
+H_2 = A_2 / (2 * pi() * r_mean);   % Blade Height of rotor at the outlet[m]
+
+r_hub_1 = (2 * r_mean - H_1) / 2;  % Radius at the hub of the rotor (inlet)[m]
+r_hub_2 = (2 * r_mean - H_2) / 2;  % Radius at the hub of the stator (inlet) [m]
+
+r_tip_1 = H_1 + r_hub_1;             % Radius at the tip of the rotor (inlet) [m]
+r_tip_2 = H_2 + r_hub_2;             % Radius at the tip of the stator (inlet)[m]
+
+
+M_1 =  V_1 / sqrt(k * R_gas * T_1); % Mach number at the inlet of the rotor [-]
+M_2 =  V_2 / sqrt(k * R_gas * T_2); % Mach number at the outlet of the rotor [-]
+
+
+
+
+
+
+
+N_rt = (2 * pi() * r_mean) / pitch_rt ; % Number of blades for the rotor !!!!!!
+
+N_st = (2 * pi() * r_mean) / pitch_st ; % Number of blades for the stator !!!!!
+
+
+r_hub_1 = (2 * r_mean - H_1) / 2;
+r_tip_1 = H_1 + r_hub_1;     
 
 
 
