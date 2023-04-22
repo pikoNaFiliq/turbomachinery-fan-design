@@ -88,6 +88,8 @@ AR_st = 6;    % Aspect Ratio for the stator [-] !!!!!!!!!!!!
 l_ax_rt = H_1 / AR_rt;   % Axial chord for the rotor [m]
 l_ax_st = H_2 / AR_st;   % Axial chord for the stator [m] 
 
+pitch_rt = l_ax_rt / sol_rt;  % Pitch for the rotor  [m]
+pitch_st = l_ax_st / sol_st;  % Pitch for the stator [m]
 
 
 N_rt = (2 * pi() * r_mean) / pitch_rt ; % Number of blades for the rotor !!!!!!
