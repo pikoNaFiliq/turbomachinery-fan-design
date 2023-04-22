@@ -23,6 +23,11 @@ n = 3342 * pi() / 30 ; % Rotational Speed [rad/s]
 b_tt = 1.4 ; % Design total to total pressure ratio [-]
 
 
+% Results from the fmincon
+
+%x_opt = !!!! 
+[phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x_opt(1),x_opt(2),x_opt(3),x_opt(4),x_opt(5),x_opt(6));
+
 
 
 %% Calculation for the inlet of the rotor( station 1)
@@ -45,6 +50,21 @@ r_mean = U / n ;   % Mean radius ( also design radius)
 Vm = phi * U_mean;  % Meridional (Axial) Velocity (constant throughout) [m/s]
 
 %%%% Velocity triangles
+
+a1 = 0 ;         % Inlet flow angle [degrees]
+
+lamda = 2 * psi;
+
+b1 = atand( tand(a1) - 1 / phi);
+
+R = - psi / 2  - phi * tand(a1) + 1 ;
+
+b2 = atand( 1 / phi *( psi + phi * tand(a1) - 1));
+
+a2 = atand( tand(b2) + 1 / phi);
+
+a3 = a1 ; % assuming REPEATED STAGES
+
 
 V_1_me = Vm / cosd(a1) ;   % Absolute Velocity at the inlet of the rotor [m/s]   !!!!
 
