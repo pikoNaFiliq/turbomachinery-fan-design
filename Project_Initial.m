@@ -122,24 +122,6 @@ r_tip_1 = H_1 + r_hub_1;
 
 
 
-%% Duty Coefficients and angles
-
-% Here we define the two duty coefficients and a1
-
-phi = 0.5;       % Flow Coefficient
-psi = 0.3;       % Work Coefficient
-a1 = 0 ;         % Inlet flow angle [degrees]
-
-lamda = 2 * psi;
-
-b1 = atand( tand(a1) - 1 / phi);
-
-R = - psi / 2  - phi * tand(a1) + 1 ;
-
-b2 = atand( 1 / phi *( psi + phi * tand(a1) - 1));
-
-a2 = atand( tand(b2) + 1 / phi);
-
 
 %% Stability - Recovery Ratio
 
