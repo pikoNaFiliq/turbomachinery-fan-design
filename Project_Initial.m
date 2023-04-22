@@ -46,7 +46,7 @@ V_ax = phi * U_mean;  % Meridional (Axial) Velocity (constant throughout) [m/s]
 
 %%%% Velocity triangles
 
-V_1 = Vm / cosd(a1) ;   % Absolute Velocity at the inlet of the rotor [m/s]
+V_1_me = Vm / cosd(a1) ;   % Absolute Velocity at the inlet of the rotor [m/s]   !!!!
 
 V_2 = Vm / cosd(a2) ;   % Absolute Velocity at the outlet of the rotor [m/s]
 
@@ -59,10 +59,10 @@ W_2 = Vm / cosd(b2) ;   % Relative Velocity at the outlet of the rotor [m/s]
 T_1_me = Tt_1 - (0.5/Cp) * V_1^2;   % Static temperature at the inlet of the rotor [K]!!!!!!
 T_2 = Tt_2 - (0.5/Cp) * V_2^2;   % Static temperature at the outlet of the rotor  [K]
 
-p_1 = pt_1 / (Tt_1 / T_1)^( k / ((k - 1) * n_p)); % Static pressire at the inlet of the rotor  [Pa]
+p_1_me = pt_1 / (Tt_1 / T_1)^( k / ((k - 1) * n_p)); % Static pressire at the inlet of the rotor  [Pa] !!!!
 p_2 = pt_2 / (Tt_2 / T_2)^( k / ((k - 1) * n_p)); % Static pressire at the outlet of the rotor [Pa]
 
-rho_1 = p_1/(R_gas * T_1);           % Static pressure at the inlet of the rotor ,assuming IDEAL GAS [kg/m^3]
+rho_1_me = p_1/(R_gas * T_1);           % Static pressure at the inlet of the rotor ,assuming IDEAL GAS [kg/m^3]!!!!
 rho_2 = p_2/(R_gas * T_2);           % Static pressure at the outlet of the rotor,assuming IDEAL GAS [kg/m^3]
 
 A_1_me = m / (rho_1 * Vm);         % Area at the inlet of the rotor  [m^2] !!!!!
