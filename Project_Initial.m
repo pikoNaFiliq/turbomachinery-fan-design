@@ -42,7 +42,7 @@ U = sqrt(w / psi);   % Peripheral speed at the mean radius
 
 r_mean = U / n ;   % Mean radius ( also design radius)
 
-V_ax = phi * U_mean;  % Meridional (Axial) Velocity (constant throughout) [m/s]
+Vm = phi * U_mean;  % Meridional (Axial) Velocity (constant throughout) [m/s]
 
 %%%% Velocity triangles
 
