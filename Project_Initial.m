@@ -117,10 +117,6 @@ N_rt = (2 * pi() * r_mean) / pitch_rt ; % Number of blades for the rotor !!!!!!
 N_st = (2 * pi() * r_mean) / pitch_st ; % Number of blades for the stator !!!!!
 
 
-r_hub_1 = (2 * r_mean - H_1) / 2;
-r_tip_1 = H_1 + r_hub_1;     
-
-
 
 
 %% Stability - Recovery Ratio
