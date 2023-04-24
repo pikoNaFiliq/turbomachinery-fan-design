@@ -5,15 +5,18 @@ clc
 
 
 %% Initial design vector
-global couplings
+
 initial = [0.5,0.4,1,0.06,1,0.06];% [phi,psi,solidity_rotor,maximum_thickness_rotor,solidity_stator,maximum_thickness_stator]
 
-x0 = initial./initial;
+x0 = initial./abs(initial);
+
+global couplings
+couplings.x0 = initial;
 %% Bounds of the optimization
 
-lb = [0.4,0.15,0.4,0.02,0.4,0.02]./intial;
+lb = [0.4,0.15,0.4,0.02,0.4,0.02]./abs(initial);
 
-ub = [0.7,0.7 ,2 , 0.12,2 , 0.12]./initial;
+ub = [0.7,0.7 ,2 , 0.12,2 , 0.12]./abs(initial);
 
 
 % Setting optimization options.
@@ -44,7 +47,8 @@ options.PlotFcns = {@optimplotfval,@optimplotx,@optimplotfunccount,...
 
 % Running the optimization.  
 tic
-[x_opt,FVAL,exitflag,output] = fmincon(@Calculations,x0,[],[],[],[],lb,ub,[],options);
+[x_opt,FVAL,exitflag,output] = fmincon(@Calculations,x0,[],[],[],[],lb,ub,@Constraints,options);
 history.x = [history.x;x];
+final_x = x_opt.*initial;
 toc
 

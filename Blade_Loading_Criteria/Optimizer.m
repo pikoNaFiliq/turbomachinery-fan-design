@@ -48,6 +48,7 @@ options.PlotFcns = {@optimplotfval,@optimplotx,@optimplotfunccount,...
 % Running the optimization.  
 tic
 [x_opt,FVAL,exitflag,output] = fmincon(@Calculations,x0,[],[],[],[],lb,ub,@Constraints,options);
-history.x = [history.x;x];
+%history.x = [history.x;x];
+final_x = x_opt.*initial;
 toc
 
