@@ -25,8 +25,8 @@ b2 = atand( 1 / phi *( psi + phi * tand(a1) - 1));
 a2 = atand( tand(b2) + 1 / phi);
 a3 = a1 ; % assuming REPEATED STAGES
 
-flow_defl_beta = b1 - b2;
-flow_defl_alpha = a2 - a1;
+flow_defl_beta = abs(b1 - b2);
+flow_defl_alpha = abs(a2 - a1);
 
 %% Howell's Loading Criterion for Rotor
 
