@@ -137,7 +137,7 @@ prof = 0;  %%%%!!!!!!!!!!!!!!
 
 flow_defl_rt = b1 - b2; % Flow deflection calculated from the velocity triangles for the rotor
 
-flow_def_st = a2 - a3;  % Flow deflection calculated from the velocity triangles for the stator
+flow_defl_st = a2 - a3;  % Flow deflection calculated from the velocity triangles for the stator
 
 
 %% Howell's Loading Criterion for ROTOR
