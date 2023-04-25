@@ -15,15 +15,15 @@ y = polyval(coeffs, x);
 result  = polyval(coeffs,b2);
 
 
-% % plot the polynomial function
-% figure
-% plot(x, y);
-% hold on
-% plot(b2,result,"ro")
-% xlabel("\beta_2 (^o)")
-% ylabel("\Delta\beta^*/(\Phi\Psi) (^o)")
-% xlim([0,55])
-% ylim([10,40])
+% plot the polynomial function
+figure
+plot(x, y);
+hold on
+plot(b2,result,"ro")
+xlabel("\beta_2 (^o)")
+ylabel("\Delta\beta^*/(\Phi\Psi) (^o)")
+xlim([0,55])
+ylim([10,40])
 
 
 
