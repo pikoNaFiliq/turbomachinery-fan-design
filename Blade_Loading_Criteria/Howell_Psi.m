@@ -15,15 +15,15 @@ y = polyval(coeffs, x);
 % Calculate the wanted value
 
 result = polyval(coeffs, 1 / sol);
-
-% plot the polynomial function
-figure
-plot(x, y);
-hold on
-plot(1/sol,result,"ro")
-xlabel("s/c = 1 / \sigma")
-ylabel("Coefficient \Psi")
-xlim([0.4,2.5])
+% 
+% %plot the polynomial function
+% figure
+% plot(x, y);
+% hold on
+% plot(1/sol,result,"ro")
+% xlabel("s/c = 1 / \sigma")
+% ylabel("Coefficient \Psi")
+% xlim([0.4,2.5])
 
 
 

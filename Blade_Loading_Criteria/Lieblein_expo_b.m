@@ -13,12 +13,12 @@ y = polyval(coeffs, x);
 result  = polyval(coeffs,b1);
 
 
-% plot the polynomial function
-figure
-plot(x, y);
-hold on
-plot(b1,result,"ro")
-xlabel("\beta_1 (^o)")
-ylabel("Exponent b")
-xlim([0,70])
-ylim([0,1])
+% % plot the polynomial function
+% figure
+% plot(x, y);
+% hold on
+% plot(b1,result,"ro")
+% xlabel("\beta_1 (^o)")
+% ylabel("Exponent b")
+% xlim([0,70])
+% ylim([0,1])
