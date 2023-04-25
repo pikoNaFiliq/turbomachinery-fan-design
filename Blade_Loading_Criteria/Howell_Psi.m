@@ -7,7 +7,7 @@ function [result] = Howell_Psi(sol)
 coeffs = dlmread('H_1.txt', ',');
 
 % define the range of x values
-x = 0.4:0.1:1.6;
+x = 0.4:0.1:2.5;
 
 % evaluate the polynomial for the given range of x values
 y = polyval(coeffs, x);
@@ -23,7 +23,7 @@ result = polyval(coeffs, 1 / sol);
 % plot(1/sol,result,"ro")
 % xlabel("s/c = 1 / \sigma")
 % ylabel("Coefficient \Psi")
-% xlim([0.4,1.6])
+% xlim([0.4,2.5])
 
 
 
