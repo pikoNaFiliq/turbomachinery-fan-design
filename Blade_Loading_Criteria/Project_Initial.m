@@ -25,7 +25,7 @@ b_tt = 1.4 ; % Design total to total pressure ratio [-]
 
 % Results from the fmincon
 
-x_opt = [0.950749403744179 ,0.897319098106300,	0.600000000000000	1	1.32927096107890 1];
+x_opt = [0.45 ,0.32 ,0.70,	0.060	,1.18,	0.060];
 [phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x_opt(1),x_opt(2),x_opt(3),x_opt(4),x_opt(5),x_opt(6));
 
 
@@ -137,7 +137,7 @@ prof = 0;  %%%%!!!!!!!!!!!!!!
 
 flow_defl_rt = b1 - b2; % Flow deflection calculated from the velocity triangles for the rotor
 
-flow_defl_st = a2 - a3;  % Flow deflection calculated from the velocity triangles for the stator
+%flow_defl_st = a2 - a3;  % Flow deflection calculated from the velocity triangles for the stator
 
 
 %% Howell's Loading Criterion for ROTOR
