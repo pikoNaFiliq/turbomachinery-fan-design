@@ -4,18 +4,18 @@ close all
 clc
 %% Data provided
 
-p_1 = 22632 ;          % Atmospheric pressure [Pa]
-T_1 = -56.5 + 273.15 ; % Temperature [K]
-rho_1 = 0.3639;        % Atmospheric Density [kg/m^3]
+p_inf = 22632 ;          % Atmospheric pressure [Pa]
+T_inf = -56.5 + 273.15 ; % Temperature [K]
+rho_inf = 0.3639;        % Atmospheric Density [kg/m^3]
 k = 1.4;               % Specific heat ratio for air
 R = 287;               % Gas constant [J/kgK]
 Cp = 1005;             % Specific heat capacity ratio for constant pressure [J/kgK]
 m = 270 ; % Design Mass Flow Rate [kg/s]
 
 M_1 = 0.8;                       % Mach Number at the inlet 
-V_1 = M_1 * sqrt(k * R * T_1);   % Velocity at the inlet
+V_inf = M_1 * sqrt(k * R * T_inf);   % Velocity at the inlet
 
-A_1 = m / (rho_1 * V_1);         % Area at the inlet of the fan
+A_inf = m / (rho_inf * V_inf);         % Area at the inlet of the fan
 
 
 n = 3342 * pi() / 30 ; % Rotational Speed [rad/s]
@@ -31,16 +31,16 @@ x_opt = [0.475,0.358,0.6,0.06,1.33,0.06];
 
 
 %% Calculation for the inlet of the rotor( station 1)
+n_is = 0.9104;
+ratio = 1 +  (b_tt^( (k - 1 ) / k) - 1)  / n_is;
 
-
-
-pt_1 = p_1 * ( 1 + ( (k - 1) / 2 ) * M_1^2 ) ^ (k / (k - 1)) ;      % Total pressure at the inlet [Pa]
-Tt_1 = T_1 * ( 1 + ( (k - 1) / 2 ) * M_1^2 ) ;                      % Total Temperature at the inlet [K]
-rhot_1 = rho_1 * ( 1 + ( (k - 1) / 2 ) * M_1^2 ) ^ ( - (k - 1)  ) ; % Total density at the inlet [kg/m^3]
+pt_1 = p_inf * ( 1 + ( (k - 1) / 2 ) * M_1^2 ) ^ (k / (k - 1)) ;      % Total pressure at the inlet [Pa]
+Tt_1 = T_inf * ( 1 + ( (k - 1) / 2 ) * M_1^2 ) ;                      % Total Temperature at the inlet [K]
+rhot_1 = rho_inf * ( 1 + ( (k - 1) / 2 ) * M_1^2 ) ^ ( - (k - 1)  ) ; % Total density at the inlet [kg/m^3]
 
 %% Calculations fpor the outlet of the rotor ( station 2)
 
-Tt_2 = Tt_1 * b_tt^((k-1) / k);   % Total temperature at the outlet of the rotor [K]
+Tt_2 = Tt_1 * ratio;   % Total temperature at the outlet of the rotor [K]
 pt_2 = pt_1 * b_tt;               % Total pressure at the outlet of the rotor [Pa]
 
 w = Cp * ( Tt_2 - Tt_1);    % Specific work done by the fan [J/kg]
@@ -71,7 +71,7 @@ n_p = 1; % Polytropic efficiency
 R_gas = 287; 
 
 
-V_1_me = Vm / cosd(a1) ;   % Absolute Velocity at the inlet of the rotor [m/s]   !!!!
+V_1 = Vm / cosd(a1) ;   % Absolute Velocity at the inlet of the rotor [m/s]   !!!!
 
 V_2 = Vm / cosd(a2) ;   % Absolute Velocity at the outlet of the rotor [m/s]
 
@@ -81,16 +81,16 @@ W_1 = Vm / cosd(b1) ;   % Relative Velocity at the inlet of the rotor [m/s]
 
 W_2 = Vm / cosd(b2) ;   % Relative Velocity at the outlet of the rotor [m/s]
 
-T_1_me = Tt_1 - (0.5/Cp) * V_1^2;   % Static temperature at the inlet of the rotor [K]!!!!!!
+T_1 = Tt_1 - (0.5/Cp) * V_1^2;   % Static temperature at the inlet of the rotor [K]!!!!!!
 T_2 = Tt_2 - (0.5/Cp) * V_2^2;   % Static temperature at the outlet of the rotor  [K]
 
-p_1_me = pt_1 / (Tt_1 / T_1)^( k / ((k - 1) * n_p)); % Static pressire at the inlet of the rotor  [Pa] !!!!
+p_1 = pt_1 / (Tt_1 / T_1)^( k / ((k - 1) * n_p)); % Static pressire at the inlet of the rotor  [Pa] !!!!
 p_2 = pt_2 / (Tt_2 / T_2)^( k / ((k - 1) * n_p)); % Static pressire at the outlet of the rotor [Pa]
 
-rho_1_me = p_1/(R_gas * T_1);           % Static pressure at the inlet of the rotor ,assuming IDEAL GAS [kg/m^3]!!!!
+rho_1 = p_1/(R_gas * T_1);           % Static pressure at the inlet of the rotor ,assuming IDEAL GAS [kg/m^3]!!!!
 rho_2 = p_2/(R_gas * T_2);           % Static pressure at the outlet of the rotor,assuming IDEAL GAS [kg/m^3]
 
-A_1_me = m / (rho_1 * Vm);         % Area at the inlet of the rotor  [m^2] !!!!!
+A_1 = m / (rho_1 * Vm);         % Area at the inlet of the rotor  [m^2] !!!!!
 A_2 = m / (rho_2 * Vm);         % Area at the outlet of the rotor [m^2]
 
 H_1 = A_1 / (2 * pi() * r_mean);   % Blade Height of rotor  at the inlet[m]
