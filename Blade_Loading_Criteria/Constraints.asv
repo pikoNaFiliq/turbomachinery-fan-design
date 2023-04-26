@@ -50,11 +50,10 @@ Max_defl_beta = abs(flow_defl_beta - db_H_rt);
 %% Inequality Constraints
 c1 = (flow_defl_beta/db_H_rt) - 1;
 c2 = (flow_defl_alpha/db_H_st) - 1;
-c3 = Max_defl_alpha - 3;
-c4 = Max_defl_beta - 3;
+c3 = 
 
 
-c = [c1,c2,c3,c4];
+c = [c1,c2];
 ceq = [];
 end
 
