@@ -119,7 +119,9 @@ dev_angle_st = Lieblein_deviation(delta_0_st,m_coeff_st,sol_st,exp_b_st,theta_st
 
 %% Calculation for the profile losses for ROTOR
 
-DF_rt = 0.45 ; % Typical value for the Diffusion Factor
+%DF_rt = 0.45 ; % Typical value for the Diffusion Factor
+
+DF_rt = (1 - cosd(b1) / cosd(b2)) + ( cosd(b1) / (2 * sol_rt) ) * (tand(abs(b1)) - tand(abs(b2)));
 
 th_c_rt = 0.0804 * DF_rt^2 - 0.0272 * DF_rt + 0.0071; % theta over c value for rotor
 
@@ -129,7 +131,9 @@ dpsi_loss_rt = (Y_rt * phi^2) / ( 2 * (cosd(b1))^2 );  % Loss of psi for the rot
 
 %% Calculation for the profile losses for STATOR
 
-DF_st = 0.45 ; % Typical value for the Diffusion Factor
+%DF_st = 0.45 ; % Typical value for the Diffusion Factor
+
+DF_st = (1 - cosd(a2) / cosd(a3)) + ( cosd(a2) / (2 * sol_st) ) * (tand(abs(a2)) - tand(abs(a3)));
 
 th_c_st = 0.0804 * DF_st^2 - 0.0272 * DF_st + 0.0071; % theta over c value for stator
 

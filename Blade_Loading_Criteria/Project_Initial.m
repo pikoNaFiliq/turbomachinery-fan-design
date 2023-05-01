@@ -25,7 +25,8 @@ b_tt = 1.4 ; % Design total to total pressure ratio [-]
 
 % Results from the fmincon
 
-x_opt = [0.4754,0.3589,0.6,0.06,1.3293,0.06];
+%x_opt = [0.4754,0.3589,0.6,0.06,1.3293,0.06];
+x_opt = [0.7541	0.3	0.6	0.06	0.62	0.06];
 [phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x_opt(1),x_opt(2),x_opt(3),x_opt(4),x_opt(5),x_opt(6));
 
 
@@ -108,7 +109,7 @@ M_2 =  V_2 / sqrt(k * R_gas * T_2); % Mach number at the outlet of the rotor [-]
 
 
 AR_rt = 5;    % Aspect Ratio for the rotor  [-] !!!!!!!!!!!!
-AR_st = 4;    % Aspect Ratio for the stator [-] !!!!!!!!!!!!
+AR_st = 3;    % Aspect Ratio for the stator [-] !!!!!!!!!!!!
 
 l_ax_rt = H_1 / AR_rt;   % Axial chord for the rotor [m]
 l_ax_st = H_2 / AR_st;   % Axial chord for the stator [m] 
