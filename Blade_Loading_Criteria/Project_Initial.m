@@ -107,7 +107,7 @@ M_1_me =  V_1 / sqrt(k * R_gas * T_1); % Mach number at the inlet of the rotor [
 M_2 =  V_2 / sqrt(k * R_gas * T_2); % Mach number at the outlet of the rotor [-]
 
 
-AR_rt = 6;    % Aspect Ratio for the rotor  [-] !!!!!!!!!!!!
+AR_rt = 5;    % Aspect Ratio for the rotor  [-] !!!!!!!!!!!!
 AR_st = 4;    % Aspect Ratio for the stator [-] !!!!!!!!!!!!
 
 l_ax_rt = H_1 / AR_rt;   % Axial chord for the rotor [m]
