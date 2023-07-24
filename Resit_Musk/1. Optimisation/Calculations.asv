@@ -27,7 +27,6 @@ V2 = Vm/cosd(a2);  %velocity at the outlet of the turbine
 
 %% Calculate the thermodynamic properties
 T1 = Tt1 - 0.5*V1^2/Cp;
-M1 = V1/sqrt(gamma*R*T1);
 
 %% 
 
