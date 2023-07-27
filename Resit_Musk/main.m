@@ -1,4 +1,4 @@
-addpath("0. Constants\","0. Functions\","0. Multall\")
+addpath("0. Constants\","0. Functions\","0. Multall\","2. test\")
 clear
 clc()
 %% INIT CLASS WITH COMMON CONVERSION FUNCTIONS
@@ -25,7 +25,7 @@ w_stage = w/num_stages;
 
 
 %% DOODY COEFFICIENTS --> 1.2 and 0.6 worked 1 stage rpm 4000 r =1.3
-psi = 1.2; % range --> 1 - 3 
+psi = 1.0; % range --> 1 - 3 
 phi = 0.6; % range --> 0.4 - 1.2
 beta_2  = atan(-1/phi);
 alpha_1 = atan((psi + 1 + phi*tan(beta_2))/phi);
@@ -53,6 +53,8 @@ loc_t_max_stator = 0.45; % x location max thickness stator
 
 t_max_rotor = 0.3; % max thickness rotor
 loc_t_max_rotor = 0.45; % x location max thickness rotor
+
+Obj_func([power,psi,phi],constants)
 
 
 

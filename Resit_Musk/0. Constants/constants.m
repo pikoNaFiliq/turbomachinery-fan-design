@@ -1,9 +1,10 @@
 classdef constants
    properties (Constant)
-    %% Aircraft Properties
-    mtow = 47000*9.80665;
-    %% Gas Properties
+    %% World Properties
     g = 9.80665; % [m/s^2]
+    %% Aircraft Properties
+    mtow = 47000*constants.g;
+    %% Gas Properties
     gamma = 1.33; % [-]
     cp = 1150; % [J/K/kg]
     R = 285.33; % [J/K/kg]
@@ -12,6 +13,14 @@ classdef constants
     v_inf = 0; % [m/s]
     Pt_in = 1.76; % [bar]
     Tt_in = 1360 ;% [K]
+    %% Constraints
+    Thrust_req = 1.15 * constants.mtow; % [N]
+    u_tip_max = 800; %[m/s]
+
+    %% Design Parameters
+    hub_tip_ratio = 0.6 %[-]
+    rpm = 9160; % [rpm]
+
     %% Meangen Settings
     bf_le = 0.0000; % blockage factor leading edge
     bf_te = 0.0200; % blockage factor trailing edge
