@@ -99,7 +99,7 @@ Pt_out = Pt_in * ( 1 - (1 / n_is) * ( 1 - Tt_out / Tt_in) )^(kg / ( kg - 1 ) );
 
 n_nozzle = 1;    % Isentropic efficiency of the nozzle [-]
 %PR_crit = ( 1 - ( 1 / n_nozzle) * (kg - 1 ) / (kg + 1 ) )^(-kg / (kg - 1 ) );  % Critical Pressure Ratio [-]
-PR_crit = 1/((1-(kg-1)/(n_nozzle*(kg+1))^(kg/(kg-1)));
+PR_crit 
 
 T_8 = Tt_out * ( 2 / ( kg + 1 ));   % Static Temperature at the outlet of the nozzle
 p_8 = Pt_out / PR_crit;             % Exit static pressure of the nozzle [bar]
