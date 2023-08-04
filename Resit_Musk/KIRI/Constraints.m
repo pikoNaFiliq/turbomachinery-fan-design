@@ -10,10 +10,10 @@ global couplings
 
 
 %% Inequality Constraints
-c1 = 1.4 * (47000 * 9.80665) - ( T_LF + T_J);
+c1 = (1.4 * (47000 * 9.80665))/(T_LF + T_J) - 1;
+c2 = (omega*Rt/800) - 1; 
 
 
-
-c = [c1];
+c = [c1,c2];
 ceq = [];
 end
