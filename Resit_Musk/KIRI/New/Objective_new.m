@@ -1,19 +1,16 @@
-%%%%%%%%%%%%%%%% RESIT 2023 %%%%%%%%%%%%%%%%%%%%%
+function [obj] = Objective_new(x)
 
-% This is basically the OBJECTIVE FUNCTION  ( the calculations that need to be done )
-
-
-clear all
-close all
-clc
-
+global couplings
+    x0 = couplings.x0;
+    
+    x = x .* abs(x0);
 
 %% Design Variables
 
 %[phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x(1),x(2),x(3),x(4),x(5),x(6));
 
 %Ours
-%[phi_mean,psi_mean,P_LPT,...
+[phi_mean,psi_mean,P_LPT] = deal(x(1),x(2),x(3));
 
 
 
@@ -26,7 +23,7 @@ T_LF = P_LPT / 225.4;  % Thrust produced bt the Lifting Fan [N]
 omega_rpm = 9000;  % Rotational speed [rpm]
 omega = omega_rpm * 2 * pi() / 60 ;  % Rotational speed [rad/s]
 
-Rm_Rt = 1.35;  % R_mean / R_tip ratio [-] !!!!!!!!!!!!!!!!!!!! WRONG NUMBER
+Rm_Rt = 0.5;  % R_mean / R_tip ratio [-] !!!!!!!!!!!!!!!!!!!! NOT SURE ABOUT THAT TBH
 
 
 %% Constants
@@ -92,8 +89,11 @@ while (err > 0.1)
     R_tip = U_tip / omega;   % Radius at the tip based on our calculations [m]
     R_mean = R_tip * Rm_Rt;  % Radius at mean based on our assumption [m]
     R_hub = 2 * R_mean - R_tip; % Radius at the hub [m]
-    %R_hub = R_tip / Rt_Rh;   % Radius at the hub based on our assumption [m]
-    %R_mean = 0.5 * ( R_tip + R_hub);  % Radius at mean [m]
+
+
+    % Now because we calculate R_mean and R_tip, I think it is wise to
+    % recompute their ratio and compare it with what we have assumed at the
+    % beginning. If the error is high we should redo the calculations.
 
     err = abs( ( Rm_Rt - (R_mean/R_tip)) / Rm_Rt );  % NOT SURE IF THIS IS THE CORRECT WAY TO DEFINE IT
     if err > 0.1
@@ -105,7 +105,7 @@ end
 
 U_mean = omega * R_mean;
 
-Vm = phi * U_mean; % Meridional velocity [m/s]
+Vm = phi_mean * U_mean; % Meridional velocity [m/s]
 
 
 
@@ -131,6 +131,51 @@ A_8 = mdot / ( rho_8 * V_8);        % Area of the nozzle at the exit [m^2]
 T_J = mdot *( V_8 - v_inf ) + A_8 * ( p_8 - p_inf);  % Thrust from the nozzle [N]
 
 
+%%%% Calculations for the FIRST stage %%%%
+
+V_0 = Vm / cosd(a1) ;   % Absolute Velocity at the inlet of the stator [m/s]   
+
+V_1 = Vm / cosd(a2) ;   % Absolute Velocity at the outlet of the stator [m/s]
+
+V_2 = Vm / cosd(a3) ;   % Absolute Velocity at the outlet of the rotor [m/s]
+
+W_0 = Vm / cosd(b1) ;   % Relative Velocity at the inlet of the stator [m/s]
+
+W_1 = Vm / cosd(b2) ;   % Relative Velocity at the outlet of the stator [m/s]
+
+T_0 = Tt_0 - (0.5/cp) * V_0^2;   % Static temperature at the inlet of the stator [K]
+T_1 = Tt_1 - (0.5/cp) * V_1^2;   % Static temperature at the outlet of the stator  [K]
+T_2 = Tt_2 - (0.5/cp) * V_2^2;   % Static temperature at the outlet of the rotor  [K]
+
+n_p = 1 ; % Polytropic Efficiency [-]
+
+p_0 = pt_0 / (Tt_0 / T_0)^( kgg / ((kg - 1) * n_p));  % Static pressire at the inlet of the stator  [bar]
+p_1 = pt_1 / (Tt_1 / T_1)^( kgg / ((kg - 1) * n_p));  % Static pressire at the outlet of the stator  [bar]
+p_2 = pt_2 / (Tt_2 / T_2)^( kg / ((kg - 1) * n_p));   % Static pressire at the outlet of the rotor [bar]
+
+rho_0 = p_0/(R_spec * T_0);           % Static pressure at the inlet of the stator ,assuming IDEAL GAS [kg/m^3]
+rho_1 = p_1/(R_spec * T_1);           % Static pressure at the outlet of the stator ,assuming IDEAL GAS [kg/m^3]
+rho_2 = p_2/(R_spec * T_2);           % Static pressure at the outlet of the rotor,assuming IDEAL GAS [kg/m^3]
+
+A_0 = m / (rho_0 * Vm);         % Area at the inlet of the stator  [m^2]
+A_1 = m / (rho_1 * Vm);         % Area at the otulet of the stator  [m^2] 
+A_2 = m / (rho_2 * Vm);         % Area at the outlet of the rotor [m^2]
+
+H_0 = A_0 / (2 * pi() * R_mean);   % Blade Height of stator  at the inlet[m]
+H_1 = A_1 / (2 * pi() * R_mean);   % Blade Height of stator  at the outlet[m]
+H_2 = A_2 / (2 * pi() * R_mean);   % Blade Height of rotor at the outlet[m]
+
+r_hub_0 = (2 * R_mean - H_0) / 2;  % Radius at the hub of the stator (inlet)[m]
+r_hub_1 = (2 * R_mean - H_1) / 2;  % Radius at the hub of the stator (outlet)[m]
+r_hub_2 = (2 * R_mean - H_2) / 2;  % Radius at the hub of the rotor (outlet) [m]
+
+r_tip_0 = H_0 + r_hub_0;             % Radius at the tip of the stator (inlet) [m]
+r_tip_1 = H_1 + r_hub_1;             % Radius at the tip of the stator (outlet) [m]
+r_tip_2 = H_2 + r_hub_2;             % Radius at the tip of the rotor (outlet)[m]
+
+M_0 =  V_0 / sqrt(kg * R_spec * T_0); % Mach number at the inlet of the stator [-] 
+M_1 =  V_1 / sqrt(kg * R_spec * T_1); % Mach number at the outlet of the stator [-] 
+M_2 =  V_2 / sqrt(kg * R_spec * T_2); % Mach number at the outlet of the rotor [-]
 
 
 %%%%%%%%%% Efficiencies %%%%%%%%%%%%%
@@ -140,7 +185,7 @@ T_J = mdot *( V_8 - v_inf ) + A_8 * ( p_8 - p_inf);  % Thrust from the nozzle [N
 C_d = 0.002;  % B.L dissipation coefficient 
 DV_V = 1 / sqrt(3);
 
-zeta_BL = C_d * ( 2 * ( 1 / DV_V) + 6 * dv_v ) * ( tand(a2) - tand(a1) );   % B.L Loss
+zeta_BL = C_d * ( 2 * ( 1 / DV_V) + 6 * DV_V ) * ( tand(a2) - tand(a1) );   % B.L Loss
 
 
 %% Shock Loss
@@ -162,15 +207,20 @@ zeta_SL = ( T_1 * L * R_spec ) / ( 0.5 * V1^2); % Shock loss
 %% Trailing Edge Losses
 
 if M_1 > =  1
-
-    zeta_TE = (   ( 1 + ( (kg - 1 ) / 2 ) * M_a^2 )^(kg / ( kg - 1 ) ) - ( P_1 / P_a ) * ( 1 + ( ( kg - 1 )/ 2 ) * M_1^2 )^( kg / ( kg - 1 ) )   ) / ( ( 1 + ( ( kg - 1 ) / 2) * M_a^2 ) - 1 );
+    
+    P1_P0 = (T_1/T_0)^(kg / (kg - 1 ) );  % P_1/P_0 assuming n_p = 1
+    P1_Pa = P1_P0 * PR_crit; % P_1/P_a
+    M_a = 1;
+    zeta_TE = (   ( 1 + ( (kg - 1 ) / 2 ) * M_a^2 )^(kg / ( kg - 1 ) ) - ( P1_Pa ) * ( 1 + ( ( kg - 1 )/ 2 ) * M_1^2 )^( kg / ( kg - 1 ) )   ) / ( ( 1 + ( ( kg - 1 ) / 2) * M_a^2 ) - 1 );
     
 end
 
 
 zeta_all = zeta_TE + zeta_SL + zeta_BL;  % Total Loss
 
+obj = zeta_all;
 
 
 
 
+end

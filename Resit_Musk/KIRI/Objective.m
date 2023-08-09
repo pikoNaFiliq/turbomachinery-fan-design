@@ -1,4 +1,4 @@
-        function [obj] = Objective(x)
+function [obj] = Objective(x)
 
 global couplings
     x0 = couplings.x0;

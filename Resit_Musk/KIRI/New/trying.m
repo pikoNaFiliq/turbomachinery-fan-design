@@ -26,7 +26,7 @@ T_LF = P_LPT / 225.4;  % Thrust produced bt the Lifting Fan [N]
 omega_rpm = 9000;  % Rotational speed [rpm]
 omega = omega_rpm * 2 * pi() / 60 ;  % Rotational speed [rad/s]
 
-Rt_Rh = 1.35;  % R_tip / R_hub ratio [-] !!!!!!!!!!!!!!!!!!!!
+Rm_Rt = 0.5;  % R_mean / R_tip ratio [-] !!!!!!!!!!!!!!!!!!!! NOT SURE ABOUT THAT TBH
 
 
 %% Constants
@@ -60,38 +60,52 @@ a2 = atand( tand(b2) + 1 / phi); % [degrees]
 %%%% The duty coefficients that were chosen are at the mean but in order to do the following calculations we should transform them to tip
 % We know that (psi_tip / psi_mid) = (R_mid / R_tip)^2 if you assume free vortex design
 
-psi_tip = psi_mid * (R_mean / R_tip)^2;
+err = 1000;
+while (err > 0.1)
 
-w_LPT = P_LPT / mdot;  % Specific work for the whole LPT [J/kg]
+    psi_tip = psi_mid * (Rm_Rt)^2;
+    
+    w_LPT = P_LPT / mdot;  % Specific work for the whole LPT [J/kg]
+    
+    N_stages = 1;
+    w_LPT_stage = w_LPT / N_stages; % Initial Specific work per stage [J/kg]
+    
+    
+    U_calc = sqrt( w_LPT_stage / psi_tip); % Calculated rotational speed at the tip 
+    
+    
+    %%%% Checking the constraint in order to calculate the total number of stages needed
+    while (U_calc >= 800 )
+    
+        N_stages = N_stages + 1 ; % Incrementing the number of stages [-]
+        w_LPT_stage_new = w_LPT / N_stages; % Reducing the specific work per stage [J/kg]
+    
+        U_calc = sqrt( w_LPT_stage_new / psi);
+    
+    end
+    
+    
+    U_tip = U_calc;
+    w_LPT_stage = w_LPT_stage_new;
+    
+    
+    R_tip = U_tip / omega;   % Radius at the tip based on our calculations [m]
+    R_mean = R_tip * Rm_Rt;  % Radius at mean based on our assumption [m]
+    R_hub = 2 * R_mean - R_tip; % Radius at the hub [m]
+    %R_hub = R_tip / Rt_Rh;   % Radius at the hub based on our assumption [m]
+    %R_mean = 0.5 * ( R_tip + R_hub);  % Radius at mean [m]
 
-N_stages = 1;
-w_LPT_stage = w_LPT / N_stages; % Initial Specific work per stage [J/kg]
+    err = abs( ( Rm_Rt - (R_mean/R_tip)) / Rm_Rt );  % NOT SURE IF THIS IS THE CORRECT WAY TO DEFINE IT
+    if err > 0.1
+        Rm_Rt = R_mean/R_tip;
+    end
 
-
-U_calc = sqrt( w_LPT_stage / psi_tip); % Calculated rotational speed at the tip !!!!!!!!!!!!!!!!!!
-%%%%%%%% How to make it be U_calc_tip ???? %%%%%%%
-
-%%%% Checking the constraint in order to calculate the total number of stages needed
-while (U_calc >= 800 )
-
-    N_stages = N_stages + 1 ; % Incrementing the number of stages [-]
-    w_LPT_stage_new = w_LPT / N_stages; % Reducing the specific work per stage [J/kg]
-
-    U_calc = sqrt( w_LPT_stage_new / psi);
 
 end
 
+U_mean = omega * R_mean;
 
-U_tip = U_calc;
-w_LPT_stage = w_LPT_stage_new;
-
-
-R_tip = U_tip / omega;   % Radius at the tip based on our calculations [m]
-R_hub = R_tip / Rt_Rh;   % Radius at the hub based on our assumption [m]
-R_mean = 0.5 * ( R_tip + R_hub);  % Radius at mean [m]
-
-%%%%%%!!!!!!!!!! Now depends where did we pick the duty coeff!!!!
-Vm = phi * U_tip; % !!!! Could me U_mean depending on them (Axial-Meridional Velocity)
+Vm = phi * U_mean; % Meridional velocity [m/s]
 
 
 
@@ -126,7 +140,7 @@ T_J = mdot *( V_8 - v_inf ) + A_8 * ( p_8 - p_inf);  % Thrust from the nozzle [N
 C_d = 0.002;  % B.L dissipation coefficient 
 DV_V = 1 / sqrt(3);
 
-zeta_BL = C_d * ( 2 * ( 1 / DV_V) + 6 * dv_v ) * ( tand(a2) - tand(a1) );   % B.L Loss
+zeta_BL = C_d * ( 2 * ( 1 / DV_V) + 6 * DV_V ) * ( tand(a2) - tand(a1) );   % B.L Loss
 
 
 %% Shock Loss
@@ -148,8 +162,11 @@ zeta_SL = ( T_1 * L * R_spec ) / ( 0.5 * V1^2); % Shock loss
 %% Trailing Edge Losses
 
 if M_1 > =  1
-
-    zeta_TE = (   ( 1 + ( (kg - 1 ) / 2 ) * M_a^2 )^(kg / ( kg - 1 ) ) - ( P_1 / P_a ) * ( 1 + ( ( kg - 1 )/ 2 ) * M_1^2 )^( kg / ( kg - 1 ) )   ) / ( ( 1 + ( ( kg - 1 ) / 2) * M_a^2 ) - 1 );
+    
+    P1_P0 = (T_1/T_0)^(kg / (kg - 1 ) );  % P_1/P_0 assuming n_p = 1
+    P1_Pa = P1_P0 * PR_crit; % P_1/P_a
+    M_a = 1;
+    zeta_TE = (   ( 1 + ( (kg - 1 ) / 2 ) * M_a^2 )^(kg / ( kg - 1 ) ) - ( P1_Pa ) * ( 1 + ( ( kg - 1 )/ 2 ) * M_1^2 )^( kg / ( kg - 1 ) )   ) / ( ( 1 + ( ( kg - 1 ) / 2) * M_a^2 ) - 1 );
     
 end
 
