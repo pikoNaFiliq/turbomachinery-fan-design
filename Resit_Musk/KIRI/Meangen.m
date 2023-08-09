@@ -43,17 +43,17 @@ M_1 =  V_1 / sqrt(kg * R_spec * T_1); % Mach number at the outlet of the stator 
 M_2 =  V_2 / sqrt(kg * R_spec * T_2); % Mach number at the outlet of the rotor [-]
 
 
-AR_rt = 6;    % Aspect Ratio for the rotor  [-] !!!!!!!!!!!!
-AR_st = 6;    % Aspect Ratio for the stator [-] !!!!!!!!!!!!
-
-l_ax_rt = H_1 / AR_rt;   % Axial chord for the rotor [m]
-l_ax_st = H_0 / AR_st;   % Axial chord for the stator [m] 
-
-pitch_rt = l_ax_rt / sol_rt;  % Pitch for the rotor  [m]
-pitch_st = l_ax_st / sol_st;  % Pitch for the stator [m]
-
-
-N_rt = (2 * pi() * R_mean) / pitch_rt ; % Number of blades for the rotor 
-
-N_st = (2 * pi() * R_mean) / pitch_st ; % Number of blades for the stator 
+% AR_rt = 6;    % Aspect Ratio for the rotor  [-] !!!!!!!!!!!!
+% AR_st = 6;    % Aspect Ratio for the stator [-] !!!!!!!!!!!!
+% 
+% l_ax_rt = H_1 / AR_rt;   % Axial chord for the rotor [m]
+% l_ax_st = H_0 / AR_st;   % Axial chord for the stator [m] 
+% 
+% pitch_rt = l_ax_rt / sol_rt;  % Pitch for the rotor  [m]
+% pitch_st = l_ax_st / sol_st;  % Pitch for the stator [m]
+% 
+% 
+% N_rt = (2 * pi() * R_mean) / pitch_rt ; % Number of blades for the rotor 
+% 
+% N_st = (2 * pi() * R_mean) / pitch_st ; % Number of blades for the stator 
 

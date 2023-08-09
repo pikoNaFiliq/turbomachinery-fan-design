@@ -68,8 +68,8 @@ N_stages = 1;
 w_LPT_stage = w_LPT / N_stages; % Initial Specific work per stage [J/kg]
 
 
-U_calc = sqrt( w_LPT_stage / psi_tip); % Calculated rotational speed at the tip 
-
+U_calc = sqrt( w_LPT_stage / psi_tip); % Calculated rotational speed at the tip !!!!!!!!!!!!!!!!!!
+%%%%%%%% How to make it be U_calc_tip ???? %%%%%%%
 
 %%%% Checking the constraint in order to calculate the total number of stages needed
 while (U_calc >= 800 )
