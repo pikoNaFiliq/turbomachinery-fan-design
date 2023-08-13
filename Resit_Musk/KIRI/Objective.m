@@ -1,9 +1,6 @@
 function [obj] = Objective(x)
 
-global couplings
-    x0 = couplings.x0;
-    
-    x = x .* abs(x0);
+
 
 
 
@@ -13,6 +10,11 @@ global couplings
 
 %Ours
 [phi,psi,P_LPT] = deal(x(1),x(2),x(3));
+
+global couplings
+    x0 = couplings.x0;
+    
+    x = x .* abs(x0);
 
 %% Chosing of important variables for the calculations later
 % We can also later check if we can put these in the optimization as design
@@ -99,7 +101,7 @@ Pt_out = Pt_in * ( 1 - (1 / n_is) * ( 1 - Tt_out / Tt_in) )^(kg / ( kg - 1 ) );
 
 n_nozzle = 1;    % Isentropic efficiency of the nozzle [-]
 %PR_crit = ( 1 - ( 1 / n_nozzle) * (kg - 1 ) / (kg + 1 ) )^(-kg / (kg - 1 ) );  % Critical Pressure Ratio [-]
-PR_crit = 1/((1-(kg-1)/(n_nozzle*(kg+1))^(kg/(kg-1)));
+PR_crit = 1/((1-(kg-1)/(n_nozzle*(kg+1))^(kg/(kg-1))));
 
 T_8 = Tt_out * ( 2 / ( kg + 1 ));   % Static Temperature at the outlet of the nozzle
 p_8 = Pt_out / PR_crit;             % Exit static pressure of the nozzle [bar]
@@ -141,7 +143,7 @@ zeta_SL = ( T_1 * L * R_spec ) / ( 0.5 * V1^2); % Shock loss
 
 %% Trailing Edge Losses
 
-if M_1 > =  1
+if M_1 >=  1
 
     zeta_TE = (   ( 1 + ( (kg - 1 ) / 2 ) * M_a^2 )^(kg / ( kg - 1 ) ) - ( P_1 / P_a ) * ( 1 + ( ( kg - 1 )/ 2 ) * M_1^2 )^( kg / ( kg - 1 ) )   ) / ( ( 1 + ( ( kg - 1 ) / 2) * M_a^2 ) - 1 );
     

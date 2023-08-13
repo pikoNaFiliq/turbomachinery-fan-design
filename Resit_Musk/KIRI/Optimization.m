@@ -14,9 +14,9 @@ global couplings
 couplings.x0 = initial;
 %% Bounds of the optimization
 
-lb = [0.4,0.3,0.6]./abs(initial);
+lb = [0.4,0.3,20e5]./abs(initial);
 
-ub = [1.1,0.6 ,1.4]./abs(initial);
+ub = [1.1,0.6 ,20e7]./abs(initial);
 
 
 % Setting optimization options.
