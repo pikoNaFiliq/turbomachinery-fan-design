@@ -111,7 +111,7 @@ T_J = mdot *( V_8 - v_inf ) + A_8 * ( p_8 - p_inf);  % Thrust from the nozzle [N
 T_LF = P_LPT/225.4;
 
 global couplings
-couplings.T_J = T_J;
+
 
 %%%%%%%%%% Efficiencies %%%%%%%%%%%%%
 

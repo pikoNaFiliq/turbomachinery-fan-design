@@ -15,6 +15,7 @@ clc
 %Ours
 %[phi_mean,psi_mean,P_LPT,...
 
+[phi_mean,psi_mean,P_LPT] = deal(x(1))
 
 
 %% Chosing of important variables for the calculations later
