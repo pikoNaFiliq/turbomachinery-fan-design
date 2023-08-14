@@ -1,9 +1,6 @@
 function [obj] = Objective_new(x)
 
-global couplings
-    x0 = couplings.x0;
-    
-    x = x .* abs(x0);
+
 
 %% Design Variables
 
@@ -11,6 +8,11 @@ global couplings
 
 %Ours
 [phi_mean,psi_mean,P_LPT] = deal(x(1),x(2),x(3));
+
+global couplings
+    x0 = couplings.x0;
+    
+    x = x .* abs(x0);
 
 
 
@@ -75,15 +77,14 @@ while (err > 0.1)
     while (U_calc >= 800 )
     
         N_stages = N_stages + 1 ; % Incrementing the number of stages [-]
-        w_LPT_stage_new = w_LPT / N_stages; % Reducing the specific work per stage [J/kg]
+        w_LPT_stage = w_LPT / N_stages; % Reducing the specific work per stage [J/kg]
     
-        U_calc = sqrt( w_LPT_stage_new / psi);
+        U_calc = sqrt( w_LPT_stage / psi);
     
     end
     
     
     U_tip = U_calc;
-    w_LPT_stage = w_LPT_stage_new;
     
     
     R_tip = U_tip / omega;   % Radius at the tip based on our calculations [m]
