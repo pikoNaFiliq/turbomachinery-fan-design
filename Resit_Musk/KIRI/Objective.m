@@ -1,4 +1,4 @@
-function [obj] = Objective_new(x)
+function [obj] = Objective(x)
 
 
 
@@ -51,10 +51,12 @@ Tt_in = 1360 ;% [K]
 
 a1 = 0; % axial inflow [degrees]
 
-R = psi/2 - phi*tand(a1) + 1 ;   % Reaction Coefficientat at mean
-b1 = atand( tand(a1) - 1 / phi); % [degrees]
-b2 = atand( tand(a1) - (psi + 1) / phi);  % [degrees]
-a2 = atand( tand(b2) + 1 / phi); % [degrees]
+R = psi_mean/2 - phi_mean*tand(a1) + 1 ;   % Reaction Coefficientat at mean
+b1 = atand( tand(a1) - 1 / phi_mean); % [degrees]
+b2 = atand( tand(a1) - (psi_mean + 1) / phi_mean);  % [degrees]
+a2 = atand( tand(b2) + 1 / phi_mean); % [degrees]
+
+a3 = a1 ; % Repeated stages
 
 %%%% The duty coefficients that were chosen are at the mean but in order to do the following calculations we should transform them to tip
 % We know that (psi_tip / psi_mid) = (R_mid / R_tip)^2 if you assume free vortex design
@@ -62,7 +64,7 @@ a2 = atand( tand(b2) + 1 / phi); % [degrees]
 err = 1000;
 while (err > 0.1)
 
-    psi_tip = psi_mid * (Rm_Rt)^2;
+    psi_tip = psi_mean * (Rm_Rt)^2;
     
     w_LPT = P_LPT / mdot;  % Specific work for the whole LPT [J/kg]
     
@@ -144,11 +146,15 @@ W_0 = Vm / cosd(b1) ;   % Relative Velocity at the inlet of the stator [m/s]
 
 W_1 = Vm / cosd(b2) ;   % Relative Velocity at the outlet of the stator [m/s]
 
+Tt_0 = Tt_in;
+
 T_0 = Tt_0 - (0.5/cp) * V_0^2;   % Static temperature at the inlet of the stator [K]
 T_1 = Tt_1 - (0.5/cp) * V_1^2;   % Static temperature at the outlet of the stator  [K]
 T_2 = Tt_2 - (0.5/cp) * V_2^2;   % Static temperature at the outlet of the rotor  [K]
 
 n_p = 1 ; % Polytropic Efficiency [-]
+
+
 
 p_0 = pt_0 / (Tt_0 / T_0)^( kgg / ((kg - 1) * n_p));  % Static pressire at the inlet of the stator  [bar]
 p_1 = pt_1 / (Tt_1 / T_1)^( kgg / ((kg - 1) * n_p));  % Static pressire at the outlet of the stator  [bar]
@@ -207,7 +213,7 @@ zeta_SL = ( T_1 * L * R_spec ) / ( 0.5 * V1^2); % Shock loss
 
 %% Trailing Edge Losses
 
-if M_1 > =  1
+if M_1 >=  1
     
     P1_P0 = (T_1/T_0)^(kg / (kg - 1 ) );  % P_1/P_0 assuming n_p = 1
     P1_Pa = P1_P0 * PR_crit; % P_1/P_a
