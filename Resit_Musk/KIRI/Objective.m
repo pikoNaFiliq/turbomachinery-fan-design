@@ -133,6 +133,7 @@ A_8 = mdot / ( rho_8 * V_8);        % Area of the nozzle at the exit [m^2]
 
 T_J = mdot *( V_8 - v_inf ) + A_8 * ( p_8 - p_inf);  % Thrust from the nozzle [N]
 
+couplings.T_J = T_J;
 
 %%%% Calculations for the FIRST stage %%%%
 
