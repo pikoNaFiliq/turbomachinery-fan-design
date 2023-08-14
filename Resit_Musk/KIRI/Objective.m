@@ -147,26 +147,33 @@ W_0 = Vm / cosd(b1) ;   % Relative Velocity at the inlet of the stator [m/s]
 W_1 = Vm / cosd(b2) ;   % Relative Velocity at the outlet of the stator [m/s]
 
 Tt_0 = Tt_in;
+Tt_1 = Tt_0;
+Tt_2 = Tt_1 - w_LPT_stage / cp;
+
 
 T_0 = Tt_0 - (0.5/cp) * V_0^2;   % Static temperature at the inlet of the stator [K]
 T_1 = Tt_1 - (0.5/cp) * V_1^2;   % Static temperature at the outlet of the stator  [K]
 T_2 = Tt_2 - (0.5/cp) * V_2^2;   % Static temperature at the outlet of the rotor  [K]
 
 n_p = 1 ; % Polytropic Efficiency [-]
+n_is = 1;
 
+b_tt = ( 1 - (1 / n_is) * ( 1 - Tt_2 / Tt_1) )^( kg / ( kg - 1 ) );
+pt_0 = Pt_in;
+pt_1 = pt_0;
+pt_2 = pt_1 * b_tt;
 
-
-p_0 = pt_0 / (Tt_0 / T_0)^( kgg / ((kg - 1) * n_p));  % Static pressire at the inlet of the stator  [bar]
-p_1 = pt_1 / (Tt_1 / T_1)^( kgg / ((kg - 1) * n_p));  % Static pressire at the outlet of the stator  [bar]
+p_0 = pt_0 / (Tt_0 / T_0)^( kg / ((kg - 1) * n_p));  % Static pressire at the inlet of the stator  [bar]
+p_1 = pt_1 / (Tt_1 / T_1)^( kg / ((kg - 1) * n_p));  % Static pressire at the outlet of the stator  [bar]
 p_2 = pt_2 / (Tt_2 / T_2)^( kg / ((kg - 1) * n_p));   % Static pressire at the outlet of the rotor [bar]
 
 rho_0 = p_0/(R_spec * T_0);           % Static pressure at the inlet of the stator ,assuming IDEAL GAS [kg/m^3]
 rho_1 = p_1/(R_spec * T_1);           % Static pressure at the outlet of the stator ,assuming IDEAL GAS [kg/m^3]
 rho_2 = p_2/(R_spec * T_2);           % Static pressure at the outlet of the rotor,assuming IDEAL GAS [kg/m^3]
 
-A_0 = m / (rho_0 * Vm);         % Area at the inlet of the stator  [m^2]
-A_1 = m / (rho_1 * Vm);         % Area at the otulet of the stator  [m^2] 
-A_2 = m / (rho_2 * Vm);         % Area at the outlet of the rotor [m^2]
+A_0 = mdot / (rho_0 * Vm);         % Area at the inlet of the stator  [m^2]
+A_1 = mdot / (rho_1 * Vm);         % Area at the otulet of the stator  [m^2] 
+A_2 = mdot / (rho_2 * Vm);         % Area at the outlet of the rotor [m^2]
 
 H_0 = A_0 / (2 * pi() * R_mean);   % Blade Height of stator  at the inlet[m]
 H_1 = A_1 / (2 * pi() * R_mean);   % Blade Height of stator  at the outlet[m]
@@ -207,7 +214,7 @@ else
 
 end
 
-zeta_SL = ( T_1 * L * R_spec ) / ( 0.5 * V1^2); % Shock loss
+zeta_SL = ( T_1 * L * R_spec ) / ( 0.5 * V_1^2); % Shock loss
 
 
 
@@ -220,7 +227,8 @@ if M_1 >=  1
     M_a = 1;
     zeta_TE = (   ( 1 + ( (kg - 1 ) / 2 ) * M_a^2 )^(kg / ( kg - 1 ) ) - ( P1_Pa ) * ( 1 + ( ( kg - 1 )/ 2 ) * M_1^2 )^( kg / ( kg - 1 ) )   ) / ( ( 1 + ( ( kg - 1 ) / 2) * M_a^2 ) - 1 );
     
-end
+else
+    zeta_TE = 0;
 
 
 zeta_all = zeta_TE + zeta_SL + zeta_BL;  % Total Loss
