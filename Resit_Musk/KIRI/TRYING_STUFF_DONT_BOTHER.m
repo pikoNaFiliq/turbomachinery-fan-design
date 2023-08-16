@@ -1,21 +1,7 @@
-function [obj] = Objective(x)
 
-
-
-%% Design Variables
-
-%[phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x(1),x(2),x(3),x(4),x(5),x(6));
-
-
-
-global couplings
-    x0 = couplings.x0;
-    
-    x = x .* abs(x0);
-
-    %Ours
-[phi_mean,psi_mean,P_LPT] = deal(x(1),x(2),x(3));
-
+phi_mean = 0.74;
+psi_mean = 0.8;
+P_LPT = 77796978.1599381;
 
 %% Chosing of important variables for the calculations later
 % We can also later check if we can put these in the optimization as design
@@ -248,5 +234,3 @@ obj = zeta_all;
 
 
 
-
-end

@@ -6,7 +6,7 @@ clc
 
 %% Initial design vector
 
-initial = [0.5,1.6,20e6];% [phi,psi,P_LPT]
+initial = [0.7,0.7,20e6];% [phi,psi,P_LPT]
 
 x0 = initial./abs(initial);
 
