@@ -7,7 +7,7 @@ global couplings
     
  %% Set the design variables
 %[phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x(1),x(2),x(3),x(4),x(5),x(6));
-[phi,psi,P_LPT] = deal(x(1),x(2),x(3));
+[phi_mean,psi_mean,P_LPT] = deal(x(1),x(2),x(3));
 
 T_LF = P_LPT/225.4;
 
