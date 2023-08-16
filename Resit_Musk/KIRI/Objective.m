@@ -147,15 +147,15 @@ couplings.T_J = T_J;
 
 %%%% Calculations for the FIRST stage %%%%
 
-V_0 = Vm / cosd(a1) ;   % Absolute Velocity at the inlet of the stator [m/s]   
+V_0 = Vm / cosd(a0) ;   % Absolute Velocity at the inlet of the stator [m/s]   
 
-V_1 = Vm / cosd(a2) ;   % Absolute Velocity at the outlet of the stator [m/s]
+V_1 = Vm / cosd(a1) ;   % Absolute Velocity at the outlet of the stator [m/s]
 
-V_2 = Vm / cosd(a3) ;   % Absolute Velocity at the outlet of the rotor [m/s]
+V_2 = Vm / cosd(a2) ;   % Absolute Velocity at the outlet of the rotor [m/s]
 
-W_0 = Vm / cosd(b1) ;   % Relative Velocity at the inlet of the stator [m/s]
+W_1 = Vm / cosd(b1) ;   % Relative Velocity at the inlet of the rotor [m/s]
 
-W_1 = Vm / cosd(b2) ;   % Relative Velocity at the outlet of the stator [m/s]
+W_2 = Vm / cosd(b2) ;   % Relative Velocity at the outlet of the rotor [m/s]
 
 Tt_0 = Tt_in;
 Tt_1 = Tt_0;
