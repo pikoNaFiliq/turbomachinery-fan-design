@@ -178,9 +178,9 @@ p_0 = pt_0 / (Tt_0 / T_0)^( kg / ((kg - 1) * n_p));  % Static pressire at the in
 p_1 = pt_1 / (Tt_1 / T_1)^( kg / ((kg - 1) * n_p));  % Static pressire at the outlet of the stator  [bar]
 p_2 = pt_2 / (Tt_2 / T_2)^( kg / ((kg - 1) * n_p));   % Static pressire at the outlet of the rotor [bar]
 
-rho_0 = p_0/(R_spec * T_0);           % Static pressure at the inlet of the stator ,assuming IDEAL GAS [kg/m^3]
-rho_1 = p_1/(R_spec * T_1);           % Static pressure at the outlet of the stator ,assuming IDEAL GAS [kg/m^3]
-rho_2 = p_2/(R_spec * T_2);           % Static pressure at the outlet of the rotor,assuming IDEAL GAS [kg/m^3]
+rho_0 = (p_0*10^5)/(R_spec * T_0);           % Static pressure at the inlet of the stator ,assuming IDEAL GAS [kg/m^3]
+rho_1 = (p_1*10^5)/(R_spec * T_1);           % Static pressure at the outlet of the stator ,assuming IDEAL GAS [kg/m^3]
+rho_2 = (p_2*10^5)/(R_spec * T_2);           % Static pressure at the outlet of the rotor,assuming IDEAL GAS [kg/m^3]
 
 A_0 = mdot / (rho_0 * Vm);         % Area at the inlet of the stator  [m^2]
 A_1 = mdot / (rho_1 * Vm);         % Area at the otulet of the stator  [m^2] 
