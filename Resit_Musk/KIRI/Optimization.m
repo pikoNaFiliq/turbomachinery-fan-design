@@ -49,5 +49,6 @@ options.PlotFcns = {@optimplotfval,@optimplotx,@optimplotfunccount,...
 tic
 [x_opt,FVAL,exitflag,output] = fmincon(@Objective,x0,[],[],[],[],lb,ub,@Constraints,options);
 %history.x = [history.x;x];
-final_x = x_opt.*initial;
+final_x = x_opt.*initial
+
 toc

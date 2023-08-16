@@ -15,7 +15,7 @@ clc
 %Ours
 %[phi_mean,psi_mean,P_LPT,...
 
-[phi_mean,psi_mean,P_LPT] = deal(x(1))
+[phi_mean,psi_mean,P_LPT] = [0.8,1.5,1.3697e8];
 
 
 %% Chosing of important variables for the calculations later
@@ -148,7 +148,7 @@ zeta_SL = ( T_1 * L * R_spec ) / ( 0.5 * V1^2); % Shock loss
 
 %% Trailing Edge Losses
 
-if M_1 > =  1
+if M_1 >=  1
 
     zeta_TE = (   ( 1 + ( (kg - 1 ) / 2 ) * M_a^2 )^(kg / ( kg - 1 ) ) - ( P_1 / P_a ) * ( 1 + ( ( kg - 1 )/ 2 ) * M_1^2 )^( kg / ( kg - 1 ) )   ) / ( ( 1 + ( ( kg - 1 ) / 2) * M_a^2 ) - 1 );
     
