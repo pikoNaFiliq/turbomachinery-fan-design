@@ -202,7 +202,7 @@ M_0 =  V_0 / sqrt(kg * R_spec * T_0); % Mach number at the inlet of the stator [
 M_1 =  V_1 / sqrt(kg * R_spec * T_1); % Mach number at the outlet of the stator [-] 
 M_2 =  V_2 / sqrt(kg * R_spec * T_2); % Mach number at the outlet of the rotor [-]
 
-display(V_1)
+display(M_1)
 %%%%%%%%%% Efficiencies %%%%%%%%%%%%%
 
 %% Boundary Layer Loss
@@ -210,7 +210,7 @@ display(V_1)
 C_d = 0.002;  % B.L dissipation coefficient 
 DV_V = 1 / sqrt(3);
 
-zeta_BL = C_d * ( 2 * ( 1 / DV_V) + 6 * DV_V ) * ( tand(a2) - tand(a1) );   % B.L Loss
+zeta_BL = C_d * ( 2 * ( 1 / DV_V) + 6 * DV_V ) * ( tand(a1) );   % B.L Loss
 
 
 %% Shock Loss
@@ -237,10 +237,10 @@ if M_1 >=  1
     P1_Pa = P1_P0 * PR_crit; % P_1/P_a
     M_a = 1;
     zeta_TE = (   ( 1 + ( (kg - 1 ) / 2 ) * M_a^2 )^(kg / ( kg - 1 ) ) - ( P1_Pa ) * ( 1 + ( ( kg - 1 )/ 2 ) * M_1^2 )^( kg / ( kg - 1 ) )   ) / ( ( 1 + ( ( kg - 1 ) / 2) * M_a^2 ) - 1 );
-    
+
 else
     zeta_TE = 0;
-
+end
 
 zeta_all = zeta_TE + zeta_SL + zeta_BL;  % Total Loss
 

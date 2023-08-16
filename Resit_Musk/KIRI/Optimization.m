@@ -6,7 +6,7 @@ clc
 
 %% Initial design vector
 
-initial = [0.5,0.4,20e6];% [phi,psi,P_LPT]
+initial = [0.5,1.6,20e6];% [phi,psi,P_LPT]
 
 x0 = initial./abs(initial);
 
@@ -14,9 +14,9 @@ global couplings
 couplings.x0 = initial;
 %% Bounds of the optimization
 
-lb = [0.4,0.3,20e5]./abs(initial);
+lb = [0.4,0.8,20e5]./abs(initial);
 
-ub = [1.1,0.6 ,20e7]./abs(initial);
+ub = [1.3,3.3 ,20e7]./abs(initial);
 
 
 % Setting optimization options.
