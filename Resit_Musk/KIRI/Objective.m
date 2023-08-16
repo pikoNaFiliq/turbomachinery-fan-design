@@ -6,14 +6,15 @@ function [obj] = Objective(x)
 
 %[phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x(1),x(2),x(3),x(4),x(5),x(6));
 
-%Ours
-[phi_mean,psi_mean,P_LPT] = deal(x(1),x(2),x(3));
+
 
 global couplings
     x0 = couplings.x0;
     
     x = x .* abs(x0);
 
+    %Ours
+[phi_mean,psi_mean,P_LPT] = deal(x(1),x(2),x(3));
 
 
 %% Chosing of important variables for the calculations later
@@ -70,14 +71,13 @@ R = psi_mean/2 - phi_mean*tand(a1) + 1;
 
 %%%% The duty coefficients that were chosen are at the mean but in order to do the following calculations we should transform them to tip
 % We know that (psi_tip / psi_mid) = (R_mid / R_tip)^2 if you assume free vortex design
+psi_tip = psi_mean * (Rm_Rt)^2;    
+w_LPT = P_LPT / mdot;  % Specific work for the whole LPT [J/kg]
+
 
 err = 1000;
 while (err > 0.1)
 
-    psi_tip = psi_mean * (Rm_Rt)^2;
-    
-    w_LPT = P_LPT / mdot;  % Specific work for the whole LPT [J/kg]
-    
     N_stages = 1;
     w_LPT_stage = w_LPT / N_stages; % Initial Specific work per stage [J/kg]
     
@@ -91,7 +91,7 @@ while (err > 0.1)
         N_stages = N_stages + 1 ; % Incrementing the number of stages [-]
         w_LPT_stage = w_LPT / N_stages; % Reducing the specific work per stage [J/kg]
     
-        U_calc = sqrt( w_LPT_stage / psi);
+        U_calc = sqrt( w_LPT_stage / psi_tip);
     
     end
     
@@ -109,7 +109,7 @@ while (err > 0.1)
     % beginning. If the error is high we should redo the calculations.
 
     err = abs( ( Rm_Rt - (R_mean/R_tip)) / Rm_Rt );  % NOT SURE IF THIS IS THE CORRECT WAY TO DEFINE IT
-    if err > 0.1
+    if err < 0.1
         Rm_Rt = R_mean/R_tip;
     end
 
@@ -202,7 +202,7 @@ M_0 =  V_0 / sqrt(kg * R_spec * T_0); % Mach number at the inlet of the stator [
 M_1 =  V_1 / sqrt(kg * R_spec * T_1); % Mach number at the outlet of the stator [-] 
 M_2 =  V_2 / sqrt(kg * R_spec * T_2); % Mach number at the outlet of the rotor [-]
 
-
+display(V_1)
 %%%%%%%%%% Efficiencies %%%%%%%%%%%%%
 
 %% Boundary Layer Loss
