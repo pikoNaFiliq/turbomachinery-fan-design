@@ -1,21 +1,8 @@
-function [obj] = Objective(x)
 
-
-
-%% Design Variables
-
-%[phi,psi,sol_rt,max_th_rt,sol_st,max_th_st] =  deal(x(1),x(2),x(3),x(4),x(5),x(6));
-
-
-
-global couplings
-    x0 = couplings.x0;
-    
-    x = x .* abs(x0);
-
-    %Ours
-[phi_mean,psi_mean,P_LPT] = deal(x(1),x(2),x(3));
-
+		
+phi_mean = 1.3;
+psi_mean = 0.8;
+P_LPT = 164964058.928954;
 
 %% Chosing of important variables for the calculations later
 % We can also later check if we can put these in the optimization as design
@@ -109,7 +96,7 @@ while (err > 0.1)
     % beginning. If the error is high we should redo the calculations.
 
     err = abs( ( Rm_Rt - (R_mean/R_tip)) / Rm_Rt );  % NOT SURE IF THIS IS THE CORRECT WAY TO DEFINE IT
-    if err > 0.1
+    if err < 0.1
         Rm_Rt = R_mean/R_tip;
     end
 
@@ -178,7 +165,7 @@ p_0 = pt_0 / (Tt_0 / T_0)^( kg / ((kg - 1) * n_p));  % Static pressire at the in
 p_1 = pt_1 / (Tt_1 / T_1)^( kg / ((kg - 1) * n_p));  % Static pressire at the outlet of the stator  [bar]
 p_2 = pt_2 / (Tt_2 / T_2)^( kg / ((kg - 1) * n_p));   % Static pressire at the outlet of the rotor [bar]
 
-rho_0 = (p_0*10^5)/(R_spec * T_0);           % Static pressure at the inlet of the stator ,assuming IDEAL GAS [kg/m^3]
+rho_0 = (p_0 * 10^5)/(R_spec * T_0);           % Static pressure at the inlet of the stator ,assuming IDEAL GAS [kg/m^3]
 rho_1 = (p_1*10^5)/(R_spec * T_1);           % Static pressure at the outlet of the stator ,assuming IDEAL GAS [kg/m^3]
 rho_2 = (p_2*10^5)/(R_spec * T_2);           % Static pressure at the outlet of the rotor,assuming IDEAL GAS [kg/m^3]
 
@@ -248,5 +235,3 @@ obj = zeta_all;
 
 
 
-
-end
