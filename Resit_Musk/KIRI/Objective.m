@@ -109,7 +109,7 @@ while (err > 0.1)
     % beginning. If the error is high we should redo the calculations.
 
     err = abs( ( Rm_Rt - (R_mean/R_tip)) / Rm_Rt );  % NOT SURE IF THIS IS THE CORRECT WAY TO DEFINE IT
-    if err < 0.1
+    if err > 0.1
         Rm_Rt = R_mean/R_tip;
     end
 
