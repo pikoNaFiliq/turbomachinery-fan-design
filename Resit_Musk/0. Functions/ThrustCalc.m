@@ -1,4 +1,4 @@
-function thrust_total = ThrustCalc(power)
+function thrust_total = ThrustCalc(power_lpt,T_t_aft)
 
     function thrust = ThrustFan(power_turbine)
     thrust = power_turbine/225.4;
@@ -10,10 +10,7 @@ function thrust_total = ThrustCalc(power)
     thrust = constants.mdot*(v_jet-constants.v_inf);
     end
     
-    power_sp = power/constants.mdot; % specific power 
-    Tt_1 = constants.Tt_in - power_sp/constants.cp;
-
-    thrust_total = ThrustNozzle(Tt_1) + ThrustFan(power);
+    thrust_total = ThrustNozzle(T_t_aft) + ThrustFan(power_lpt);
 
 
 end
