@@ -48,9 +48,9 @@ fprintf(file, '%g \n',constants.blade_twist);
 %%  BLADE ROTATION OPTION
 fprintf(file, '%s \n', constants.blade_rotation);
 %% QO ANGLES AT LE  AND TE OF ROW 1 
-fprintf(file, '%g %g \n',constants.QO_angle,constants.QO_angle); 
+fprintf(file, '%g %g \n',constants.QO_LE_1,constants.QO_TE_1);
 %% QO ANGLES AT LE  AND TE OF ROW 2 
-fprintf(file, '%g %g \n',constants.QO_angle,constants.QO_angle); 
+fprintf(file, '%g %g \n',constants.QO_LE_2,constants.QO_TE_2);
 %% DO YOU WANT TO CHANGE THE ANGLES FOR THIS STAGE ?
 fprintf(file, '%s \n', "N"); 
 %% Have to say Y for all stages and give the blockage factor for every stage

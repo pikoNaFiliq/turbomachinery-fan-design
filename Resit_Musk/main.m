@@ -16,46 +16,40 @@ T_req = 1.15*constants.mtow; % required Thrust
 % PR = TR^((constants.gamma-1)/constants.gamma/eta_is);
 
 %% Turbine CHARACTERISTICS
-num_stages = 1;
-rpm = 4000;
-power = 9.25e7; % Total power [W] min --> 9.25e7 
+num_stages = 3;
+rpm = 3800;
+power = 0.75*225.4*1.4*constants.mtow; % Total power [W] min --> 9.25e7 
 w = power/constants.mdot; % [J/kg]
 w_stage = w/num_stages;
 
 
 
 %% DOODY COEFFICIENTS --> 1.2 and 0.6 worked 1 stage rpm 4000 r =1.3
-psi = 1.0; % range --> 1 - 3 
-phi = 0.6; % range --> 0.4 - 1.2
+psi = 1; % range --> 1 - 3 
+phi = 0.8; % range --> 0.4 - 1.2
 beta_2  = atan(-1/phi);
 alpha_1 = atan((psi + 1 + phi*tan(beta_2))/phi);
 reaction = psi/2 -phi*tan(alpha_1) + 1 ;
 
-% mean_radius = w_stage/1000; % --> radius method set to B
-
 u_mean = sqrt(w_stage/psi);
-mean_radius = 1.3;%u_mean/cc.rpm2rads(rpm) ; % --> radius method set to A
+mean_radius = u_mean/cc.rpm2rads(rpm);
 
-
-eta_is = 0.9; % isentropic efficiency
+eta_is = 0.915; % isentropic efficiency
 %% BLADE CHARACTERISTICS
-chord_stator = 0.05;
-chord_rotor = 0.04;
+chord_stator = 0.11;
+chord_rotor = 0.12;
 
-delta_stator = 1; % flow deviation in deg
-delta_rotor = 1;
+delta_stator = 2; % flow deviation in deg
+delta_rotor = 2;
 
 i_stator = -2; % Incidence angle stator
 i_rotor = -2; % Incidence angle rotor
 
-t_max_stator = 0.3; % max thickness stator
-loc_t_max_stator = 0.45; % x location max thickness stator
+t_max_stator = 0.2; % max thickness stator
+loc_t_max_stator = 0.28; % x location max thickness stator
 
-t_max_rotor = 0.3; % max thickness rotor
-loc_t_max_rotor = 0.45; % x location max thickness rotor
-
-Obj_func([power,psi,phi],constants)
-
+t_max_rotor = 0.2; % max thickness rotor
+loc_t_max_rotor = 0.28; % x location max thickness rotor
 
 
 %% STARTING THE MULTALL PROCEDURE
@@ -91,6 +85,7 @@ if status_stagen ~=0
 end
 
 %% RUN MULTALL TO TEST IT
+EditMultallInputFile(true);
 status_multall = system(multall_cmd);
 % [status_multall,result] = system(multall_cmd);
 % index = strfind(result,"NEGATIVE VOLUMES FOUND");
