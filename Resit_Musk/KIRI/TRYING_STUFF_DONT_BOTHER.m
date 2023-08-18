@@ -1,8 +1,10 @@
-
+clear all
+close all
+clc
 		
-phi_mean = 1.3;
-psi_mean = 0.8;
-P_LPT = 164964058.928954;
+phi_mean = 0,8;
+psi_mean = 1;
+P_LPT = 108.93*10^6;
 
 %% Chosing of important variables for the calculations later
 % We can also later check if we can put these in the optimization as design
@@ -10,7 +12,7 @@ P_LPT = 164964058.928954;
 
 
 T_LF = P_LPT / 225.4;  % Thrust produced bt the Lifting Fan [N]
-omega_rpm = 9000;  % Rotational speed [rpm]
+omega_rpm = 3800;  % Rotational speed [rpm]
 omega = omega_rpm * 2 * pi() / 60 ;  % Rotational speed [rad/s]
 
 Rm_Rt = 0.5;  % R_mean / R_tip ratio [-] !!!!!!!!!!!!!!!!!!!! NOT SURE ABOUT THAT TBH
